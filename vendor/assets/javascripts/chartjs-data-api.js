@@ -75,7 +75,7 @@ $(function () {
       Charts._cleanAttr(attrData)
 
       var options = $.extend({
-        animation: false,
+        animation: true,
         responsive: true,
         bezierCurve : true,
         bezierCurveTension : 0.25,

@@ -30,7 +30,8 @@ module PushupsHelper
 
 	def global_average(total=0)
 		global_pushups.each {|p| total+= p}
-		avg = total.to_f / @pushups.count
+		count = global_pushups.count
+		avg = total.to_f / count
 		avg.round(0)
 	end
 
