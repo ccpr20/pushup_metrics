@@ -9,7 +9,7 @@
 		<% @pushups.each do |pushup| %>
 		<tr>
 			<td><%= pushup.amount %></td>
-			<td><%= pushup.created_at.strftime("%b %d, %Y") %></td>
+			<td><%= pushup.date.strftime("%b %d, %Y") %></td>
 			<td><%= link_to "Edit", edit_pushup_path(pushup) %></td>
 			<td><%= link_to "Destroy", pushup_path(pushup), method: :delete %></td>
 		</tr>

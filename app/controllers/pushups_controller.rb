@@ -27,7 +27,7 @@ class PushupsController < ApplicationController
 
 	def history
 		pushups = Pushup.where(user_id: current_user.id)
-		@pushups = pushups.sort_by &:date
+		@pushups = (pushups.sort_by &:date).reverse!
 	end
 
 	# POST /pushups
