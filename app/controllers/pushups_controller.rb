@@ -4,14 +4,11 @@ class PushupsController < ApplicationController
 
   # GET /pushups
   def index
-    @pushups = Pushup.all
-		@amounts = @pushups.map {|p| p.amount.to_i}
+    @pushups = Pushup.where(user_id: current_user.id)
+		pushups = hashify(@pushups) # sort pushups by log date, create key:value pair
+		@dates = pushups.keys.map {|p| p.strftime("%b %d")}
+		@amounts = pushups.values.map {|p| p }
 		@sum = get_sum(@amounts)
-		@dates = @pushups.map {|p| p.created_at.strftime("%b %d")}
-  end
-
-  # GET /pushups/1
-  def show
   end
 
   # GET /pushups/new
@@ -61,6 +58,13 @@ class PushupsController < ApplicationController
   end
 
   private
+
+		def hashify(pushups, hash={})
+			pushups.each do |p|
+				hash[p.created_at] = p.amount.to_i
+			end
+			hash.sort.to_h # sort returns array, revert back to hash
+		end
 
 		def get_sum(pushups, total=0)
 			pushups.each {|p| total += p}
