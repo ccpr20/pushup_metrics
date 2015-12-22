@@ -1,9 +1,12 @@
 <!-- Customize the following for each page of your app. -->
 <% meta title: "Dashboard", description: "Track pushups. Get stronger." %>
-<h2>Progress Report</h2>
+<h2 class="inline">Dashboard</h2>
+<%= link_to "Log Pushups", log_pushup_path, class: "btn btn-primary inline" %>
+<br><br>
+<%= render 'dashboard/boxes' %>
 <br>
-<%= render 'boxes' %>
+<%= render 'dashboard/line_graph' %>
 <br>
-<%= render 'graph' %>
+<%= render 'dashboard/bar_chart' %>
+<%= render 'dashboard/comparison_chart' %>
 <br>
-<%= link_to "Log Pushups", log_pushup_path, class: "btn btn-primary" %>

@@ -1,14 +1,19 @@
 class PushupsController < ApplicationController
-  before_action :set_pushup, only: [:show, :edit, :update, :destroy]
+	include PushupsHelper
+	before_action :set_pushup, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!
 
   # GET /pushups
   def index
-    @pushups = Pushup.where(user_id: current_user.id)
-		pushups = hashify(@pushups) # sort pushups by log date, create key:value pair
-		@dates = pushups.keys.map {|p| p.strftime("%b %d")}
-		@amounts = pushups.values.map {|p| p }
-		@sum = get_sum(@amounts)
+    user_pushups = Pushup.where(user_id: current_user.id)
+		@pushups = hashify(user_pushups) # sort pushups by log date, create key:value pair
+		@dates = @pushups.keys.map {|p| p.strftime("%b %d")}
+		@user_amounts = @pushups.values.map {|p| p }
+		@user_sum = get_sum(@user_amounts)
+		@global_average = global_average
+		@global_leader = global_leader
+		@global_portion = global_portion
+		@global_sum = get_sum(global_pushups)
   end
 
   # GET /pushups/new
@@ -48,7 +53,6 @@ class PushupsController < ApplicationController
   end
 
   # DELETE /pushups/1
-  # DELETE /pushups/1.json
   def destroy
     @pushup.destroy
     respond_to do |format|
@@ -64,11 +68,6 @@ class PushupsController < ApplicationController
 				hash[p.created_at] = p.amount.to_i
 			end
 			hash.sort.to_h # sort returns array, revert back to hash
-		end
-
-		def get_sum(pushups, total=0)
-			pushups.each {|p| total += p}
-			total
 		end
 
     # Use callbacks to share common setup or constraints between actions.

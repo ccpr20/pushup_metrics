@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="hr-divider">
+		<h2 class="hr-divider-content hr-divider-heading">Lifetime Progress</h2>
+	</div><br>
+  <canvas
+    class="ex-line-graph"
+    data-chart="line"
+		data-scale-start-value=<%= @user_amounts.min %>
+		data-scale-step-width=<%= @user_amounts.max / 4 %>
+		data-scale-steps=4
+    data-scale-line-color="transparent"
+    data-scale-grid-line-color="rgba(255,255,255,.05)"
+    data-scale-font-color="#a2a2a2"
+    data-labels="<%= @dates %>"
+    data-value="[{fillColor: 'rgba(28,168,221,.03)', data: <%= @user_amounts %>}]">
+  </canvas>
+</div>

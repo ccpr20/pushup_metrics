@@ -10,6 +10,11 @@
 .btn-primary {background-color: transparent; border-radius: 2px; border: 3px solid #4ea7d9;}
 .btn-default {background-color: transparent; border-radius: 2px; border: 3px solid #fff; color: white}
 .auto {margin-left: auto; margin-right: auto; display: block}
+.inline {display: inline}
+.btn.btn-primary.inline {float:right}
+div.statcard {margin: 3px}
+.datepicker:enabled {color: white}
+
 /*Devise */
 
   .form-signin {
