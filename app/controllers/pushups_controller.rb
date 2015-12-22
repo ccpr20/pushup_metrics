@@ -27,14 +27,14 @@ class PushupsController < ApplicationController
 
 	def history
 		pushups = Pushup.where(user_id: current_user.id)
-		@pushups = pushups.sort_by &:created_at
+		@pushups = pushups.sort_by &:date
 	end
 
 	# POST /pushups
   # POST /pushups.json
   def create
-		month, day, year = params["pushup"]["created_at"].split("/")
-		params["pushup"]["created_at"] = DateTime.new(year.to_i, month.to_i, day.to_i)
+		month, day, year = params["pushup"]["date"].split("/")
+		params["pushup"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
     @pushup = current_user.pushups.new(pushup_params)
       if @pushup.save
         redirect_to dashboard_path, notice: 'Pushup was successfully recorded.'
@@ -70,7 +70,7 @@ class PushupsController < ApplicationController
 
 		def hashify(pushups, hash={})
 			pushups.each do |p|
-				hash[p.created_at] = p.amount.to_i
+				hash[p.date] = p.amount.to_i
 			end
 			hash.sort.to_h # sort returns array, revert back to hash
 		end
@@ -82,6 +82,6 @@ class PushupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pushup_params
-      params.require(:pushup).permit(:amount, :created_at, :user_id)
+      params.require(:pushup).permit(:amount, :date, :user_id)
     end
 end
