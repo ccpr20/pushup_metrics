@@ -42,7 +42,8 @@ module PushupsHelper
 	def global_portion
 		global_count = global_pushups.count
 		user_count = Pushup.where(user_id: current_user.id).count
-		user_count.to_f / global_count
+		return (user_count.to_f / global_count) if user_count > 0
+		return 0 if user_count < 1
 	end
 
 end

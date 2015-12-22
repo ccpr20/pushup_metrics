@@ -16,7 +16,11 @@
 			<h3 class="statcard-number">
 				<%= @user_amounts.max %>
 				<small class="delta-indicator delta-positive">
-					<%= number_with_precision(((@user_amounts.max.to_f / @user_amounts.first)*100), precision: 2) %>%
+					<% unless @user_amounts.max.nil? %>
+						<%= number_with_precision(((@user_amounts.max.to_f / @user_amounts.first)*100), precision: 2) %>%
+					<% else %>
+						<%= 'n/a' %>
+					<% end %>
 				</small>
 			</h3>
 			<span class="statcard-desc">Personal Best</span>

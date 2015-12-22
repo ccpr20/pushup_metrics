@@ -6,7 +6,7 @@
     class="ex-line-graph"
     data-chart="line"
 		data-scale-start-value=<%= @user_amounts.min %>
-		data-scale-step-width=<%= @user_amounts.max / 4 %>
+		data-scale-step-width=<%= (@user_amounts.max / 4) if @user_amounts.count > 0 %>
 		data-scale-steps=4
     data-scale-line-color="transparent"
     data-scale-grid-line-color="rgba(255,255,255,.05)"
