@@ -18,7 +18,8 @@
     <div class="collapse navbar-collapse" id="navbar-collapse" data-toggle="Collapse" data-target=".navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
       <% if current_user %>
-				<li><%= link_to "Log", log_pushup_path %></li>
+			<li><%= link_to "Log", log_pushup_path %></li>
+				<li><%= link_to "History", history_path %></li>
         <li><%= link_to "Settings", settings_path %></li>
         <li><%= link_to "Logout", logout_path, method: :delete %></li>
       <% else %>

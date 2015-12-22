@@ -12,8 +12,14 @@
 .auto {margin-left: auto; margin-right: auto; display: block}
 .inline {display: inline}
 .btn.btn-primary.inline {float:right}
+.btn.btn-default.inline {float:right; margin-right: 5px}
 div.statcard {margin: 3px}
 .datepicker:enabled {color: white}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	.btn.btn-default.inline {display: none}
+}
 
 /*Devise */
 

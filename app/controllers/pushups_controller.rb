@@ -25,7 +25,12 @@ class PushupsController < ApplicationController
   def edit
   end
 
-  # POST /pushups
+	def history
+		pushups = Pushup.where(user_id: current_user.id)
+		@pushups = pushups.sort_by &:created_at
+	end
+
+	# POST /pushups
   # POST /pushups.json
   def create
 		month, day, year = params["pushup"]["created_at"].split("/")
@@ -56,7 +61,7 @@ class PushupsController < ApplicationController
   def destroy
     @pushup.destroy
     respond_to do |format|
-      format.html { redirect_to pushups_url, notice: 'Pushup was successfully destroyed.' }
+      format.html { redirect_to history_path, notice: 'Pushup was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

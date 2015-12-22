@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+	root 'pages#home'
 
 	get 'log', to: "pushups#new", as: 'log_pushup'
 	get 'dashboard', to: "pushups#index", as: 'dashboard'
+	get 'history', to: "pushups#history", as: 'history'
   resources :pushups
-  root 'pages#home'
 
   devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
   devise_scope :user do
