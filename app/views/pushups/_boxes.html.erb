@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-3">
+    <div class="statcard statcard-primary p-a-md">
+      <h3 class="statcard-number"><%= @amounts.first %></h3>
+      <span class="statcard-desc">Starting Amount</span>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="statcard statcard-info p-a-md">
+      <h3 class="statcard-number"><%= @amounts.last %></h3>
+      <span class="statcard-desc">Most Recent</span>
+    </div>
+  </div>
+	<div class="col-sm-3">
+		<div class="statcard statcard-success p-a-md">
+			<h3 class="statcard-number">
+				<%= @amounts.max %>
+				<small class="delta-indicator delta-positive">
+					<%= number_with_precision(((@amounts.max.to_f / @amounts.first)*100), precision: 2) %>%
+				</small>
+			</h3>
+			<span class="statcard-desc">Personal Best</span>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="statcard statcard-danger p-a-md">
+			<h3 class="statcard-number">
+				<%= @sum %>
+			</h3>
+			<span class="statcard-desc">Total Pushups</span>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<%= simple_form_for(@pushup) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+		<%= f.input :amount, label: false, required: true, placeholder: "amount" %>
+		<%= f.input :created_at, as: "string", label: false, required: true, placeholder: "date", input_html: {class: "datepicker"} %>
+  </div>
+
+  <div class="form-actions">
+		<input type="submit" value="Log" class='btn btn-primary' %>
+    <%= link_to "Back to Dashboard", dashboard_path, class: 'btn btn-default' %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+</script>

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header-collapse" role="navigation">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+			</button>
+			<% if current_user %>
+      	<%= link_to image_tag("pushup_tracker.png", style: 'width: 75px'), dashboard_path, :class => 'navbar-brand' %>
+			<% else %>
+      	<%= link_to image_tag("pushup_tracker.png", style: 'width: 75px'), root_path, :class => 'navbar-brand' %>
+			<% end %>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-collapse" data-toggle="Collapse" data-target=".navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+      <% if current_user %>
+				<li><%= link_to "Log", log_pushup_path %></li>
+        <li><%= link_to "Settings", settings_path %></li>
+        <li><%= link_to "Logout", logout_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Login", login_path, class: "btn btn-default" %></li>
+      <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

@@ -1,0 +1,49 @@
+// Navbar
+.navbar {background-color: transparent; border: none}
+.navbar-default .navbar-nav > li > a {color: #fff;}
+.navbar a.navbar-brand {color: #fff;}
+.navbar .btn-default {padding-top: 5px; padding-bottom: 5px; margin-top: 10px;}
+
+// Global
+.jumbotron {background-color: transparent; text-align: center}
+.gap {margin-top: 60px}
+.btn-primary {background-color: transparent; border-radius: 2px; border: 3px solid #4ea7d9;}
+.btn-default {background-color: transparent; border-radius: 2px; border: 3px solid #fff; color: white}
+.auto {margin-left: auto; margin-right: auto; display: block}
+/*Devise */
+
+  .form-signin {
+	  max-width: 350px;
+	  padding: 15px;
+	  margin: 0 auto;
+	}
+  .form-signin .form-signin-heading,
+	.form-signin .checkbox {
+	  margin-bottom: 10px;
+	}
+
+.form-signin .checkbox {
+	  font-weight: normal;
+	}
+
+  .form-signin .form-control {
+	  position: relative;
+	  height: auto;
+	  -webkit-box-sizing: border-box;
+	     -moz-box-sizing: border-box;
+	          box-sizing: border-box;
+	  padding: 10px;
+	  font-size: 16px;
+	}
+
+  .form-signin .form-control:focus {
+	  z-index: 2;
+	}
+
+  .form-signin input {
+  margin-bottom: 10px;
+	}
+
+  .form-signin input {
+    margin-bottom: 0;
+	}
