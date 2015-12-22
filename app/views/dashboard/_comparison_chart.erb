@@ -1,34 +1,36 @@
 <div class="col-md-6">
 	<div class="row">
 		<div class="hr-divider">
-			<h2 class="hr-divider-content hr-divider-heading">Your Global Rank</h2>
+			<h2 class="hr-divider-content hr-divider-heading">Global Standing</h2>
 		</div><br><br>
-<div class="col-sm-6">
-  <div class="statcard statcard-primary p-a-md">
-    <h3 class="statcard-number"><%= @global_average %></h3>
-    <span class="statcard-desc">Average Set</span>
-  </div>
-</div>
-<div class="col-sm-6">
-  <div class="statcard statcard-info p-a-md">
-    <h3 class="statcard-number"><%= @global_leader %></h3>
-    <span class="statcard-desc">Largest Set</span>
-  </div>
-</div>
-<div class="col-sm-6">
-	<div class="statcard statcard-success p-a-md">
-		<h3 class="statcard-number">
-			<%= @global_portion.round(2) %>%
-		</h3>
-		<span class="statcard-desc">Your Contribution</span>
+	<div class="col-sm-6">
+	  <div class="statcard statcard-primary p-a-md">
+	    <h3 class="statcard-number"><%= @global_average %></h3>
+	    <span class="statcard-desc">Average Set</span>
+	  </div>
+	</div>
+	<div class="col-sm-6">
+	  <div class="statcard statcard-info p-a-md">
+	    <h3 class="statcard-number"><%= @global_leader %></h3>
+	    <span class="statcard-desc">Largest Set</span>
+	  </div>
+	</div>
+	<div class="col-sm-6">
+		<div class="statcard statcard-success p-a-md">
+			<h3 class="statcard-number">
+				<%= (@global_portion * 100).round(2) %>%
+			</h3>
+			<span class="statcard-desc">Your Contribution</span>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<div class="statcard statcard-danger p-a-md">
+			<h3 class="statcard-number">
+				<%= @global_sum %>
+			</h3>
+			<span class="statcard-desc">Global Pushups</span>
+		</div>
+	</div>
 	</div>
 </div>
-<div class="col-sm-6">
-	<div class="statcard statcard-danger p-a-md">
-		<h3 class="statcard-number">
-			<%= @global_sum %>
-		</h3>
-		<span class="statcard-desc">Global Pushups</span>
-	</div>
-</div>
-</div>
+<br>
