@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
 	before_action :set_user
 	before_action :set_team
+	before_action :set_subdomain
 
 	def set_user
 		@user = current_user if current_user
@@ -14,8 +15,12 @@ class ApplicationController < ActionController::Base
 	end
 
 	def set_team
-		# can remove or refactor find_by's to use this instead
-		@team = Team.find_by(subdomain: request.subdomain)
+		@team = Team.find_by(subdomain: @subdomain)
+	end
+
+	def set_subdomain
+		@subdomain = request.subdomain.downcase.gsub!("www.", '')
+		puts @subdomain
 	end
 
 	def configure_permitted_parameters

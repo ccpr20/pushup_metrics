@@ -20,8 +20,8 @@ class DashboardController < ApplicationController
 
 	def team
 		# retrieve team only if user associated and subdomain present
-		subdomain = request.subdomain.downcase
-		team_pushups = current_team_pushups(subdomain)
+		# subdomain = request.subdomain.downcase
+		team_pushups = current_team_pushups(@subdomain)
 
 		@pushups = hashify(team_pushups) # creates hash of pushup log date:amount
 		@dates = @pushups.keys.map {|p| p.strftime("%b %d")}

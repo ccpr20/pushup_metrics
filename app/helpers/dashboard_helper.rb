@@ -1,7 +1,6 @@
 module DashboardHelper
 
 	def current_team_pushups(subdomain, arr=[])
-		# binding.pry
 		current_team_id = Team.find_by(subdomain: subdomain).id
 		all_pushups = Pushup.all
 
@@ -30,8 +29,7 @@ module DashboardHelper
 	end
 
 	def team_members_count
-		subdomain = request.subdomain.downcase
-		team = Team.find_by(subdomain: subdomain)
+		team = Team.find_by(subdomain: @subdomain)
 		team.users.count
 	end
 end

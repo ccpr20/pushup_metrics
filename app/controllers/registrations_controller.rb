@@ -3,13 +3,13 @@ class RegistrationsController < Devise::RegistrationsController
 
 	private
 		def set_team_slug
-			subdomain = request.subdomain.downcase
+			# subdomain = request.subdomain.downcase
 			# checks for existing team or creates new
-			@team = Team.find_by(subdomain: subdomain)
+			@team = Team.find_by(subdomain: @subdomain)
 			if @team.present?
 				@user.teams << @team
 			else
-				team = Team.new(subdomain: subdomain, user_id: @user.id)
+				team = Team.new(subdomain: @subdomain, user_id: @user.id)
 				team.save
 				@user.teams << team
 			end
