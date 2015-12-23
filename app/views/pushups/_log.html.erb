@@ -6,13 +6,14 @@
     </tr>
   </thead>
   <tbody>
-		<% @pushups.each do |pushup| %>
+	<% @pushups.each do |pushup| %>
 		<tr>
 			<td><%= pushup.amount %></td>
 			<td><%= pushup.date.strftime("%b %d, %Y") %></td>
 			<td><%= link_to "Edit", edit_pushup_path(pushup) %></td>
 			<td><%= link_to "Destroy", pushup_path(pushup), method: :delete %></td>
 		</tr>
-		<% end %>
+	<% end %>
+	<%= will_paginate(@pushups) %>
   </tbody>
 </table>

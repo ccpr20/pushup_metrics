@@ -7,10 +7,6 @@ class RemindersController < ApplicationController
     @reminders = Reminder.all
   end
 
-  # GET /reminders/1
-  def show
-  end
-
   # GET /reminders/new
   def new
     @reminder = current_user.reminders.new
@@ -31,28 +27,20 @@ class RemindersController < ApplicationController
 		# hour += 12 if time_of_day == "pm"
 		# params["time"] = Time.new("#{hour.to_s}:#{minutes.to_s}")
 
-    respond_to do |format|
       if @reminder.save
-        format.html { redirect_to dashboard_path, notice: 'Reminder was successfully created.' }
-        format.json { render :show, status: :created, location: @reminder }
+        redirect_to dashboard_path
       else
-        format.html { render :new }
-        format.json { render json: @reminder.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /reminders/1
   def update
-    respond_to do |format|
       if @reminder.update(reminder_params)
-        format.html { redirect_to dashboard_path, notice: 'Reminder was successfully updated.' }
-        format.json { render :show, status: :ok, location: @reminder }
+      	redirect_to dashboard_path
       else
-        format.html { render :edit }
-        format.json { render json: @reminder.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
   # DELETE /reminders/1

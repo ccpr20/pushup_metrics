@@ -27,7 +27,7 @@ class PushupsController < ApplicationController
 
 	def history
 		pushups = Pushup.where(user_id: current_user.id)
-		@pushups = (pushups.sort_by &:date).reverse!
+		@pushups = pushups.paginate(:page => params[:page], :per_page => 10).order('date DESC')
 	end
 
 	# POST /pushups
@@ -37,7 +37,7 @@ class PushupsController < ApplicationController
 		params["pushup"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
     @pushup = current_user.pushups.new(pushup_params)
       if @pushup.save
-        redirect_to dashboard_path, notice: 'Pushup was successfully recorded.'
+        redirect_to dashboard_path
       else
         render :new
       end
@@ -46,24 +46,17 @@ class PushupsController < ApplicationController
   # PATCH/PUT /pushups/1
   # PATCH/PUT /pushups/1.json
   def update
-    respond_to do |format|
       if @pushup.update(pushup_params)
-        format.html { redirect_to @pushup, notice: 'Pushup was successfully updated.' }
-        format.json { render :show, status: :ok, location: @pushup }
+        redirect_to @pushup
       else
-        format.html { render :edit }
-        format.json { render json: @pushup.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
   # DELETE /pushups/1
   def destroy
     @pushup.destroy
-    respond_to do |format|
-      format.html { redirect_to history_path, notice: 'Pushup was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      redirect_to history_path
   end
 
   private

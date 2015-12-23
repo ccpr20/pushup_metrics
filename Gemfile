@@ -32,6 +32,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'whenever', :require => false
 gem 'twilio-ruby'
 gem 'phony_rails' # validate phone numbers
+gem 'will_paginate'
 
 group :development, :test do
 
