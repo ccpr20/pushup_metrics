@@ -1,0 +1,8 @@
+<% meta title: "Dashboard", description: "Track pushups. Get stronger." %>
+<h2 class="inline">Dashboard</h2>
+<%= link_to "Add Pushups", log_pushup_path, class: "btn btn-primary inline" %>
+<%= link_to "View History", history_path, class: "btn btn-default inline" %><br><br>
+<%= render 'dashboard/private/boxes' %>
+<%= render 'dashboard/private/line_graph' %>
+<%= render 'dashboard/private/bar_chart' %>
+<%= render 'dashboard/private/comparison_chart' %>

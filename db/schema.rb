@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223014652) do
+ActiveRecord::Schema.define(version: 20151223174939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,9 +22,19 @@ ActiveRecord::Schema.define(version: 20151223014652) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "team_id"
   end
 
+  add_index "pushups", ["team_id"], name: "index_pushups_on_team_id", using: :btree
   add_index "pushups", ["user_id"], name: "index_pushups_on_user_id", using: :btree
+
+  create_table "pushups_teams", id: false, force: :cascade do |t|
+    t.integer "pushup_id"
+    t.integer "team_id"
+  end
+
+  add_index "pushups_teams", ["pushup_id", "team_id"], name: "index_pushups_teams_on_pushup_id_and_team_id", using: :btree
+  add_index "pushups_teams", ["team_id"], name: "index_pushups_teams_on_team_id", using: :btree
 
   create_table "reminders", force: :cascade do |t|
     t.string   "phone_number"
@@ -35,6 +45,22 @@ ActiveRecord::Schema.define(version: 20151223014652) do
   end
 
   add_index "reminders", ["user_id"], name: "index_reminders_on_user_id", using: :btree
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "subdomain"
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams_users", id: false, force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "user_id"
+  end
+
+  add_index "teams_users", ["team_id", "user_id"], name: "index_teams_users_on_team_id_and_user_id", using: :btree
+  add_index "teams_users", ["user_id"], name: "index_teams_users_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

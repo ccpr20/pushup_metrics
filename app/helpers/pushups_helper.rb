@@ -39,11 +39,20 @@ module PushupsHelper
 		global_pushups.max
 	end
 
-	def global_portion
+	def global_portion_user
 		global_count = global_pushups.count
 		user_count = Pushup.where(user_id: current_user.id).count
 		return (user_count.to_f / global_count) if user_count > 0
 		return 0 if user_count < 1
+	end
+
+	def global_portion_team
+		subdomain = request.subdomain.downcase
+		global_count = global_pushups.count
+		team_count = current_team_pushups(subdomain).size
+		binding.pry
+		return (team_count.to_f / global_count) if team_count > 0
+		return 0 if team_count < 1
 	end
 
 end

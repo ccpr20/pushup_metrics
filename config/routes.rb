@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
 	root 'pages#home'
+	get 'choose', to: "pages#choose", as: 'choose_team'
+
+	get 'dashboard', to: "dashboard#private", as: 'dashboard'
+	get 'team', to: "dashboard#team", as: 'team_dashboard'
+	get 'teams', to: "dashboard#all_teams", as: 'teams'
 
 	get 'remind', to: "reminders#new", as: 'new_reminder'
   resources :reminders
 
 	get 'log', to: "pushups#new", as: 'log_pushup'
-	get 'dashboard', to: "pushups#index", as: 'dashboard'
 	get 'history', to: "pushups#history", as: 'history'
   resources :pushups
 

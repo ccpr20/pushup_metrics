@@ -9,7 +9,7 @@ class Reminder < ActiveRecord::Base
 		client.messages.create(
 		    from: ENV['TWILIO_PHONE_NUMBER'],
 		    to: '+16784317729', # hard code burner number to test task
-		    body: 'Drop down and give me pushups, maggot!')
+		    body: 'Drop down and give me pushups, maggot! Log at pushupmetrics.com')
 	end
 
 end

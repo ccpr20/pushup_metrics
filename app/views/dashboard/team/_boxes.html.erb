@@ -1,0 +1,31 @@
+<div class="row">
+	<div class="col-sm-3">
+		<div class="statcard statcard-primary p-a-md">
+			<h3 class="statcard-number"><%= team_members_count %></h3>
+			<span class="statcard-desc">Team Members</span>
+		</div>
+	</div>
+  <div class="col-sm-3">
+    <div class="statcard statcard-info p-a-md">
+      <h3 class="statcard-number"><%= @team_amounts.last %></h3>
+      <span class="statcard-desc">Most Recent Set</span>
+    </div>
+  </div>
+	<div class="col-sm-3">
+		<div class="statcard statcard-success p-a-md">
+			<h3 class="statcard-number">
+				<%= @team_amounts.max %>
+			</h3>
+			<span class="statcard-desc">Best Individual Set</span>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="statcard statcard-danger p-a-md">
+			<h3 class="statcard-number">
+				<%= @team_sum %>
+			</h3>
+			<span class="statcard-desc">Team Total Pushups</span>
+		</div>
+	</div>
+</div>
+<br>

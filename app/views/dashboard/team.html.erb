@@ -1,0 +1,7 @@
+<% meta title: "Team Dashboard", description: "Track pushups. Get stronger." %>
+<h2 class="inline">dashboard | <%= @team.subdomain %></h2>
+<%= link_to "Add Pushups", log_pushup_path, class: "btn btn-primary inline" %><br><br>
+<%= render 'dashboard/team/boxes' %>
+<%= render 'dashboard/team/line_graph' %>
+<%= render 'dashboard/team/bar_chart' %>
+<%= render 'dashboard/team/comparison_chart' %>
