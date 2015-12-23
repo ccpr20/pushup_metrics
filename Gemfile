@@ -29,6 +29,9 @@ gem 'figaro'
 gem 'rename'
 gem 'chartjs-ror'
 gem 'bootstrap-datepicker-rails'
+gem 'whenever', :require => false
+gem 'twilio-ruby'
+gem 'phony_rails' # validate phone numbers
 
 group :development, :test do
 

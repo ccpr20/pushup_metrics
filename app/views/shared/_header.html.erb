@@ -20,6 +20,7 @@
       <% if current_user %>
 			<li><%= link_to "Log", log_pushup_path %></li>
 				<li><%= link_to "History", history_path %></li>
+				<li><%= link_to "Reminders", new_reminder_path %></li>
         <li><%= link_to "Settings", settings_path %></li>
         <li><%= link_to "Logout", logout_path, method: :delete %></li>
       <% else %>

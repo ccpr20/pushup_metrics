@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 	root 'pages#home'
 
+	get 'remind', to: "reminders#new", as: 'new_reminder'
+  resources :reminders
+
 	get 'log', to: "pushups#new", as: 'log_pushup'
 	get 'dashboard', to: "pushups#index", as: 'dashboard'
 	get 'history', to: "pushups#history", as: 'history'

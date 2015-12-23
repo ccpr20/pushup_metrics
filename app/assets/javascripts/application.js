@@ -17,6 +17,7 @@
 //= require excanvas
 //= require chartjs-data-api
 //= require twitter/bootstrap
+//= require jquery-timepicker
 //= require bootstrap-datepicker
 //= require analytics
 //= require turbolinks

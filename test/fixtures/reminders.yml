@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  phone_number: MyString
+  time: 2015-12-22 20:46:52
+  references: 
+
+two:
+  phone_number: MyString
+  time: 2015-12-22 20:46:52
+  references: 
