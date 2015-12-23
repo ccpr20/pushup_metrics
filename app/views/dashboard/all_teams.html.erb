@@ -2,7 +2,7 @@
 	<div class="col-md-4">
 	<h1>Choose a Team</h1><br>
 	<% @teams.each do |team| %>
-		<% if team.subdomain != "" %>
+		<% if team.subdomain != "" && team.subdomain != "www" %>
 			<a href=<%= "http://#{team.subdomain}.#{@domain}#{team_dashboard_path}" %>><p class="teams"><%= team.subdomain %></p></a>
 		<% end %>
 	<% end %>

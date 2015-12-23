@@ -19,10 +19,9 @@
       <ul class="nav navbar-nav navbar-right">
       <% if current_user %>
 				<li><%= link_to "Add New", new_pushup_path %></li>
-			<!-- Hide team feature until GoDaddy acknowledges wildcard subdomains -->
-			<!-- <% if user_has_team? %>
+			<% if user_has_team? %>
 				<li><%= link_to "Team", teams_path %></li>
-			<% end %> -->
+			<% end %>
 				<li><%= link_to "Reminders", new_reminder_path %></li>
         <li><%= link_to "Settings", settings_path %></li>
         <li><%= link_to "Logout", logout_path, method: :delete %></li>
