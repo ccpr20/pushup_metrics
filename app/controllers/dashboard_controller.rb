@@ -1,9 +1,9 @@
 class DashboardController < ApplicationController
 	include PushupsHelper
 	include DashboardHelper
-	before_action :set_pushup, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, only: [:private, :all_teams]
-
+	before_action :check_if_team_exists, only: [:team]
+	before_action :set_pushup, only: [:show, :edit, :update, :destroy]
 	# todo: before_action that redirects user if subdomain is not part of a team they belong to!
 
 	def private
@@ -33,6 +33,9 @@ class DashboardController < ApplicationController
 		redirect_to team_dashboard_path unless current_user.teams.count > 1
 		@teams = current_user.teams
 		@domain = request.domain
+	end
+
+	def sorry
 	end
 
 	private
@@ -78,6 +81,11 @@ class DashboardController < ApplicationController
 				counter += 1
 			end
 			output
+		end
+
+		def check_if_team_exists
+			existing_teams = Team.where(subdomain: @subdomain)
+			redirect_to undefined_team_path if !existing_teams.present?
 		end
 
 		def set_pushup

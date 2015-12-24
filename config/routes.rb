@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 	get 'dashboard', to: "dashboard#private", as: 'dashboard'
 	get 'team', to: "dashboard#team", as: 'team_dashboard'
 	get 'teams', to: "dashboard#all_teams", as: 'teams'
+	get 'oops', to: "dashboard#sorry", as: 'undefined_team'
 
 	match 'twilio/process_sms' => 'twilio#process_sms', via: [:get, :post]
 	get 'remind', to: "reminders#new", as: 'new_reminder'
