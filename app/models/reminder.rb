@@ -5,7 +5,7 @@ class Reminder < ActiveRecord::Base
 
 	def self.send_reminders
 	  client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-		# todo: iterate through all phone numbers on platform
+
 		users = get_users_with_reminders
 		users.each do |user|
 			client.messages.create(
@@ -20,7 +20,7 @@ class Reminder < ActiveRecord::Base
 		all_reminders.each do |reminder|
 			arr << reminder.phone_number
 		end
-		arr.uniq! # in case a user provided their phone multiple times, don't spam
+		arr # todo: grab only unique phone numbers in case user inputs more than 1
 	end
 
 end
