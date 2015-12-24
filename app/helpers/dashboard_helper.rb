@@ -23,7 +23,7 @@ end
 	def current_user_teams(arr=[])
 		teams = current_user.teams
 		teams.each do |team|
-			arr << team
+			arr << team unless arr.include?(team)
 		end
 		arr
 	end

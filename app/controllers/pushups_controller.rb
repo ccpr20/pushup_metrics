@@ -24,10 +24,8 @@ class PushupsController < ApplicationController
 		params["pushup"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
     @pushup = current_user.pushups.new(pushup_params)
 
-		# associate pushup record to all of user's teams
-		@pushup.teams << current_user_teams
-
     if @pushup.save
+			@pushup.teams << current_user_teams # associate pushup record to all of user's teams
       redirect_to dashboard_path
     else
       render :new
@@ -58,6 +56,6 @@ class PushupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pushup_params
-      params.require(:pushup).permit(:amount, :date, :user_id, :team_id)
+      params.require(:pushup).permit(:amount, :date, :user_id)
     end
 end
