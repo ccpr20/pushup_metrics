@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 	get 'team', to: "dashboard#team", as: 'team_dashboard'
 	get 'teams', to: "dashboard#all_teams", as: 'teams'
 
+	match 'twilio/process_sms' => 'twilio#process_sms', via: [:get, :post]
 	get 'remind', to: "reminders#new", as: 'new_reminder'
   resources :reminders
 

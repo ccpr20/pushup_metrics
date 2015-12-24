@@ -11,7 +11,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# speedrails
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem "font-awesome-rails"
 gem 'simple_form'
@@ -41,7 +40,6 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 
-  #speedrails
   gem 'foreman'
   gem 'better_errors'
   gem 'pry'
