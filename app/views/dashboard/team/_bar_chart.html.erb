@@ -7,14 +7,14 @@
 	    <div><canvas
 	      class="ex-line-graph"
 	      data-chart="bar"
-				data-scale-start-value= <%= pushups_this_month(@pushups) / 2 %>
-				data-scale-step-width= <%= pushups_this_month(@pushups) / 4 %>
+				data-scale-start-value= <%= pushups_last_month(@combined_team_pushups) / 2 %>
+				data-scale-step-width= <%= pushups_this_month(@combined_team_pushups) / 4 %>
 				data-scale-steps= 3
 	      data-scale-line-color="transparent"
 	      data-scale-grid-line-color="rgba(255,255,255,.05)"
 	      data-scale-font-color="#a2a2a2"
 	      data-labels="['<%= (Time.now.beginning_of_month - 1.day).beginning_of_month.strftime("%B") %>','<%= Date.today.strftime("%B") %>']"
-	      data-value="[{ label: 'First dataset', data: [<%= pushups_last_month(@pushups) %>, <%= pushups_this_month(@pushups) %>], fillColor: '#1bc98e' }]"></canvas>
+	      data-value="[{ label: 'First dataset', data: [<%= pushups_last_month(@combined_team_pushups) %>, <%= pushups_this_month(@combined_team_pushups) %>], fillColor: '#1bc98e' }]"></canvas>
 	    </div>
 	  </div>
   </div>

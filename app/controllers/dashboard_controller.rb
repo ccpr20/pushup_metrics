@@ -19,18 +19,13 @@ class DashboardController < ApplicationController
 	end
 
 	def team
-		# retrieve team only if user associated and subdomain present
-		# subdomain = request.subdomain.downcase
+		# retrieve team that matches subdomain
 		team_pushups = current_team_pushups(@subdomain)
 
-		@pushups = hashify(team_pushups) # creates hash of pushup log date:amount
+		@pushups = hashify_team(team_pushups) # creates hash of pushup log date:amount
 		@dates = @pushups.keys.map {|p| p.strftime("%b %d")}
-		@team_amounts = @pushups.values.map {|p| p }
-		@team_sum = get_sum(@team_amounts)
-		@global_average = global_average
-		@global_leader = global_leader
-		@global_portion = global_portion_team
-		@global_sum = get_sum(global_pushups)
+		@team_amounts = combine_daily_logs(@pushups) # when multiple entries exist on a single date
+		@combined_team_pushups = combine_team_pushups(@pushups.keys, @team_amounts)
 	end
 
 	def all_teams
@@ -47,6 +42,42 @@ class DashboardController < ApplicationController
 				hash[p.date] = p.amount.to_i
 			end
 			hash.sort.to_h # sort returns array, revert back to hash
+		end
+
+		def hashify_team(pushups, output={})
+			pushups.each do |p|
+				output[p.date] = []
+			end
+			output.each do |date, amounts|
+				relevant_pushups = pushups.select {|p| p.date == date}
+				relevant_pushups.each do |rel|
+					amounts << rel.amount.to_i
+				end
+			end
+			output.sort.to_h # sort method returns array, so revert back to hash
+		end
+
+		def combine_daily_logs(pushups, arr=[])
+			pushups.values.each do |values|
+				entries = values.count
+				counter = 0
+				total = 0
+				while counter < entries
+					total += values[counter]
+					counter += 1
+				end
+				arr << total
+			end
+				arr
+		end
+
+		def combine_team_pushups(dates, amounts, output={})
+			counter = 0
+			dates.each do |d|
+				output[d] = amounts[counter]
+				counter += 1
+			end
+			output
 		end
 
 		def set_pushup

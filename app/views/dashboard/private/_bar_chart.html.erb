@@ -7,7 +7,7 @@
 	    <div><canvas
 	      class="ex-line-graph"
 	      data-chart="bar"
-				data-scale-start-value= <%= pushups_this_month(@pushups) / 2 %>
+				data-scale-start-value= <%= pushups_last_month(@pushups) / 2 %>
 				data-scale-step-width= <%= pushups_this_month(@pushups) / 4 %>
 				data-scale-steps= 3
 	      data-scale-line-color="transparent"

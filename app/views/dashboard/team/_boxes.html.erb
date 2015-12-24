@@ -14,7 +14,7 @@
 	<div class="col-sm-3">
 		<div class="statcard statcard-success p-a-md">
 			<h3 class="statcard-number">
-				<%= @team_amounts.max %>
+				<%= best_individual_set(@pushups) %>
 			</h3>
 			<span class="statcard-desc">Best Individual Set</span>
 		</div>
@@ -22,7 +22,7 @@
 	<div class="col-sm-3">
 		<div class="statcard statcard-danger p-a-md">
 			<h3 class="statcard-number">
-				<%= @team_sum %>
+				<%= get_sum(@team_amounts) %>
 			</h3>
 			<span class="statcard-desc">Team Total Pushups</span>
 		</div>
