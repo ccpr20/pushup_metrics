@@ -1,5 +1,6 @@
 module PagesHelper
 
+	# todo: refactor - potentially ignore subdomain and check team Names only 
 	def user_has_team?
 		# all users will have teams, even if empty, so check for subdomain
 		current_user.teams.each do |t|

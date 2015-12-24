@@ -8,7 +8,7 @@ class SessionsController < Devise::SessionsController
 			if @team.present?
 				@user.teams << @team unless user_already_on_team?
 			else
-				team = Team.new(subdomain: @subdomain, user_id: @user.id)
+				team = Team.new(subdomain: @subdomain, name: @subdomain, user_id: @user.id)
 				team.save
 				@user.teams << team
 			end

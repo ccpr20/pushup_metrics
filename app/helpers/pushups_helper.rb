@@ -47,7 +47,6 @@ module PushupsHelper
 	end
 
 	def global_portion_team
-		# subdomain = request.subdomain.downcase
 		global_count = global_pushups.count
 		team_count = current_team_pushups(@subdomain).size
 		return (team_count.to_f / global_count) if team_count > 0

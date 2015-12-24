@@ -19,8 +19,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def set_subdomain
-		@subdomain = request.subdomain.downcase.gsub!("www.", '')
-		puts @subdomain
+		@subdomain = request.subdomain.downcase.gsub("www.", "")
 	end
 
 	def configure_permitted_parameters
