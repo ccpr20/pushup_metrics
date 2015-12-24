@@ -34,11 +34,11 @@ class PushupsController < ApplicationController
 
   # PATCH/PUT /pushups/1
   def update
-    if @pushup.update(pushup_params)
-      redirect_to @pushup
-    else
-      render :edit
-    end
+		if @pushup.update(pushup_params)
+			redirect_to @pushup
+		else
+			render :edit
+		end
   end
 
   # DELETE /pushups/1

@@ -8,14 +8,13 @@ class DashboardController < ApplicationController
 
 	def private
 		user_pushups = Pushup.where(user_id: current_user.id)
-		@pushups = hashify(user_pushups) # sort pushups by log date, create key:value pair
+		# @pushups = hashify(user_pushups) # sort pushups by log date, create key:value pair
+		@pushups = hashify_team(user_pushups)
 		@dates = @pushups.keys.map {|p| p.strftime("%b %d")}
-		@user_amounts = @pushups.values.map {|p| p }
-		@user_sum = get_sum(@user_amounts)
-		@global_average = global_average
-		@global_leader = global_leader
-		@global_portion = global_portion_user
-		@global_sum = get_sum(global_pushups)
+		# @user_amounts = @pushups.values.map {|p| p }
+		@user_amounts = combine_daily_logs(@pushups)
+		# @user_sum = get_sum(@user_amounts)
+		@user_sum = combine_team_pushups(@pushups.keys, @user_amounts)
 	end
 
 	def team

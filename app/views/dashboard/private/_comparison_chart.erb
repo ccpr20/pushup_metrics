@@ -5,20 +5,20 @@
 		</div><br><br>
 	<div class="col-sm-6">
 	  <div class="statcard statcard-primary p-a-md">
-	    <h3 class="statcard-number"><%= @global_average %></h3>
+	    <h3 class="statcard-number"><%= global_average %></h3>
 	    <span class="statcard-desc">Average Set</span>
 	  </div>
 	</div>
 	<div class="col-sm-6">
 	  <div class="statcard statcard-info p-a-md">
-	    <h3 class="statcard-number"><%= @global_leader %></h3>
+	    <h3 class="statcard-number"><%= global_leader %></h3>
 	    <span class="statcard-desc">Largest Set</span>
 	  </div>
 	</div>
 	<div class="col-sm-6">
 		<div class="statcard statcard-success p-a-md">
 			<h3 class="statcard-number">
-				<%= (@global_portion * 100).round(2) %>%
+				<%= (global_portion_user * 100).round(2) %>%
 			</h3>
 			<span class="statcard-desc">Your Contribution</span>
 		</div>
@@ -26,7 +26,7 @@
 	<div class="col-sm-6">
 		<div class="statcard statcard-danger p-a-md">
 			<h3 class="statcard-number">
-				<%= @global_sum %>
+				<%= get_sum(global_pushups) %>
 			</h3>
 			<span class="statcard-desc">Global Pushups</span>
 		</div>

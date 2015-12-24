@@ -7,7 +7,8 @@
   </div>
   <div class="col-sm-3">
     <div class="statcard statcard-info p-a-md">
-      <h3 class="statcard-number"><%= @user_amounts.last %></h3>
+			<!-- Todo: refactor finding recent and best sets within nested arr of multiple inputs per day -->
+      <h3 class="statcard-number"><%= @pushups.values.last.last %></h3>
       <span class="statcard-desc">Most Recent</span>
     </div>
   </div>
@@ -29,7 +30,7 @@
 	<div class="col-sm-3">
 		<div class="statcard statcard-danger p-a-md">
 			<h3 class="statcard-number">
-				<%= @user_sum %>
+				<%= get_sum(@user_amounts) %>
 			</h3>
 			<span class="statcard-desc">Total Pushups</span>
 		</div>
