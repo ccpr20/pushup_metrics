@@ -24,7 +24,7 @@ class PushupsController < ApplicationController
 		params["pushup"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
     @pushup = current_user.pushups.new(pushup_params)
 
-		# attempt to attribute pushup record to all of user's teams
+		# associate pushup record to all of user's teams
 		@pushup.teams << current_user_teams
 
     if @pushup.save

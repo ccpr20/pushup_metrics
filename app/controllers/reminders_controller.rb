@@ -2,15 +2,18 @@ class RemindersController < ApplicationController
 	before_action :authenticate_user!
   before_action :set_reminder, only: [:show, :edit, :update, :destroy]
 
-  # GET /reminders
-  def index
-    @reminders = Reminder.all
-  end
-
   # GET /reminders/new
   def new
-    @reminder = current_user.reminders.new
+		if current_user.reminders.present?
+			redirect_to existing_reminder_path
+		else
+    	@reminder = current_user.reminders.new
+		end
   end
+
+	def existing
+		@reminders = current_user.reminders
+	end
 
   # GET /reminders/1/edit
   def edit
@@ -27,11 +30,11 @@ class RemindersController < ApplicationController
 		# hour += 12 if time_of_day == "pm"
 		# params["time"] = Time.new("#{hour.to_s}:#{minutes.to_s}")
 
-      if @reminder.save
-        redirect_to dashboard_path
-      else
-        render :new
-      end
+    if @reminder.save
+      redirect_to dashboard_path
+    else
+      render :new
+    end
   end
 
   # PATCH/PUT /reminders/1
@@ -46,10 +49,7 @@ class RemindersController < ApplicationController
   # DELETE /reminders/1
   def destroy
     @reminder.destroy
-    respond_to do |format|
-      format.html { redirect_to reminders_url, notice: 'Reminder was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      redirect_to dashboard_path
   end
 
   private

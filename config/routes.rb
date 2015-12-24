@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
 	match 'twilio/process_sms' => 'twilio#process_sms', via: [:get, :post]
 	get 'remind', to: "reminders#new", as: 'new_reminder'
+	get 'existing', to: "reminders#existing", as: 'existing_reminder'
   resources :reminders
 
 	get 'log', to: "pushups#new", as: 'log_pushup'
