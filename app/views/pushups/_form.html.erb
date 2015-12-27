@@ -2,8 +2,8 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-		<%= f.input :amount, label: false, required: true, placeholder: "amount" %>
-		<%= f.input :date, as: "string", label: false, required: true, placeholder: "date", input_html: {class: "datepicker"} %>
+		<%= f.input :amount, label: false, required: true, placeholder: "amount", input_html: {type: "tel", autocomplete: "off"} %>
+		<%= f.input :date, as: "string", label: false, required: true, placeholder: "date", input_html: {id: "dp", class: "datepicker"} %>
   </div>
 
   <div class="form-actions">
@@ -13,7 +13,11 @@
 <% end %>
 
 <script type="text/javascript">
+
   $(document).ready(function(){
     $('.datepicker').datepicker('setDate', new Date());
-  });
+		$('#dp').on('change', function(){
+		$('.datepicker-dropdown').hide();
+});
+});
 </script>
