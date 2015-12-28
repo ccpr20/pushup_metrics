@@ -18,6 +18,10 @@ p.teams {font-size: 16px}
 .navbar-default .navbar-nav > li > a {color: #fff;}
 .navbar a.navbar-brand {color: #fff;}
 .navbar .btn-default {padding-top: 5px; padding-bottom: 5px; margin-top: 10px;}
+.navbar ul li a {display: inline-block; padding-left: 4px}
+.navbar ul li:hover {color: #4ea7d9}
+.navbar ul li:hover a:hover {color: #4ea7d9}
+
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
