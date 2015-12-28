@@ -21,7 +21,7 @@ class Reminder < ActiveRecord::Base
 	end
 
 	def self.send_sms_reminders(client)
-		users = get_users_with_reminders
+	      users = get_users_with_reminders
 		users.each do |user|
 			client.messages.create(
 					from: ENV['TWILIO_PHONE_NUMBER'],
@@ -32,7 +32,7 @@ class Reminder < ActiveRecord::Base
 
 	def self.send_slack_reminders
 		# currently Galvanize team only; todo: refactor for WYSIWYG team config
-		SlackBot.ping 'All right maggots, hit the roof and give me some pushups!'
+		SlackBot.ping '@channel All right maggots, hit the roof and give me some pushups!'
 	end
 
 end
