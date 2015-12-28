@@ -32,6 +32,7 @@ gem 'whenever', :require => false
 gem 'twilio-ruby'
 gem 'phony_rails' # validate phone numbers
 gem 'will_paginate'
+gem 'slack-notifier'
 
 group :development, :test do
 

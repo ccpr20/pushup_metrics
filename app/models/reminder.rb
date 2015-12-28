@@ -6,16 +6,9 @@ class Reminder < ActiveRecord::Base
 	def self.send_reminders
 		today = Date.today.strftime('%a')
 		unless today == "Sat" || today == "Sun" # don't send reminders on weekend
-
 			client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-
-			users = get_users_with_reminders
-			users.each do |user|
-				client.messages.create(
-				    from: ENV['TWILIO_PHONE_NUMBER'],
-				    to: user,
-				    body: 'Drop down and give me some pushups, maggot! Then reply to this message with the amount you did for instant logging.')
-			end
+			send_sms_reminders(client)
+			send_slack_reminders
 		end
 	end
 
@@ -25,6 +18,21 @@ class Reminder < ActiveRecord::Base
 			arr << reminder.phone_number
 		end
 		arr # todo: grab only unique phone numbers in case user inputs more than 1
+	end
+
+	def self.send_sms_reminders(client)
+		users = get_users_with_reminders
+		users.each do |user|
+			client.messages.create(
+					from: ENV['TWILIO_PHONE_NUMBER'],
+					to: user,
+					body: 'Drop down and give me some pushups, maggot! (Reply to this message with an amount for instant logging.)')
+		end
+	end
+
+	def self.send_slack_reminders
+		# currently Galvanize team only; todo: refactor for WYSIWYG team config
+		SlackBot.ping 'All right maggots, hit the roof and give me some pushups!'
 	end
 
 end
