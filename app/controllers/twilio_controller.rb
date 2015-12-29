@@ -5,14 +5,14 @@ class TwilioController < ApplicationController
 		# todo: ignore message and skip operation if phone_number does not exist
 
 		# find user with matching phone number
-		user = Reminder.find_by(:phone_number => params["From"])
-		user_id = user.id if user.present?
+		reminder = Reminder.find_by(:phone_number => params["From"])
+		user_id = reminder.user_id if reminder.present?
 
 		# create vars for pushup record
 		@number_of_pushups = params["Body"].to_i
 		today = Date.today
 
-		if user.present?
+		if reminder.present?
 			user = User.find(user_id)
 
 			# add new pushup for user with given params
