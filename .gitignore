@@ -10,5 +10,8 @@
 !/log/.keep
 /tmp
 
-# Uncomment the next line to ignore environment variables
+# Ignore environment variables
 /config/application.yml
+
+# Ignore custom initializers
+/config/initializers/peanus.rb

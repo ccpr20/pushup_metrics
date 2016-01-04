@@ -23,7 +23,8 @@
 <div class="col-md-12">
 	<div class="col-md-4">
 		<div class="form-inline">
-			<input type="submit", value = "Update" class="btn btn-primary" > <%= link_to "Back to Dashboard", dashboard_path, class: "btn btn-default" %>
+			<%= f.button :submit, value: "Update", class: "btn btn-primary" %>
+			<%= link_to "Back to Dashboard", dashboard_path, class: "btn btn-default" %>
 		</div>
 	</div>
 </div>
