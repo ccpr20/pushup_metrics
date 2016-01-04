@@ -2,7 +2,7 @@ class PagesController < ApplicationController
 	before_action :send_to_dashboard?, only: [:home]
 
 	def home
-  end
+ 	end
 
 	def choose
 		@teams = current_user.teams

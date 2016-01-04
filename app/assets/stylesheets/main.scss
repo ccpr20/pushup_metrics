@@ -26,10 +26,10 @@ p.teams {font-size: 16px}
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-	.btn.btn-default.inline {display: none}
+  .btn.btn-default.inline {display: none}
 }
 
-/*Devise */
+/* User Authentication */
 .form-signin {max-width: 350px; padding: 15px; margin: 0 auto;}
 .form-signin .form-signin-heading, .form-signin .checkbox {margin-bottom: 10px;}
 .form-signin .checkbox {font-weight: normal;}
