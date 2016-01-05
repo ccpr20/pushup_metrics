@@ -14,4 +14,3 @@
 /config/application.yml
 
 # Ignore custom initializers
-/config/initializers/peanus.rb

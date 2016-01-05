@@ -23,11 +23,10 @@ class PushupsController < ApplicationController
     month, day, year = params["pushup"]["date"].split("/")
     params["pushup"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
     @pushup = current_user.pushups.new(pushup_params)
-    user = User.find(@pushup.user_id)
     if @pushup.save
       @pushup.teams << current_user_teams # associate pushup record to all of user's teams
       redirect_to dashboard_path
-      Peanus.ping "new pushup logged: #{@pushup.amount} by #{user.name} // #{user.email}"
+      Peanus.ping "new pushup logged: #{@pushup.amount} by #{@user.name} // #{@user.email}"
     else
       render :new
     end
