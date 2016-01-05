@@ -36,7 +36,7 @@ class PushupsController < ApplicationController
   # PATCH/PUT /pushups/1
   def update
     if @pushup.update(pushup_params)
-    	redirect_to @pushup
+    	redirect_to dashboard_path
     else
     	render :edit
     end

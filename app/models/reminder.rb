@@ -13,7 +13,7 @@ class Reminder < ActiveRecord::Base
 
 	def self.get_users_with_reminders
         all_reminders = Reminder.all
-        all_reminders.map {|reminder| reminder.phone_number}
+        return all_reminders.map {|reminder| reminder.phone_number}
 	end
 
 	def self.send_sms_reminders(client)
@@ -34,5 +34,13 @@ class Reminder < ActiveRecord::Base
     def self.is_weekend?
       today = Date.today.strftime('%a')
       today == "Sat" || today == "Sun"
+    end
+
+    def self.send_instructions(user)
+      client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+      client.messages.create(
+        from: ENV['TWILIO_PHONE_NUMBER'],
+        to: user,
+        body: 'Welcome to Pushup Metrics! Text this number at any time with your latest pushup count for instant logging.')
     end
 end

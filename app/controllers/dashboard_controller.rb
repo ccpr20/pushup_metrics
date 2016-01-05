@@ -3,17 +3,15 @@ class DashboardController < ApplicationController
 	include DashboardHelper
 	before_action :authenticate_user!, only: [:private, :all_teams]
 	before_action :check_if_team_exists, only: [:team]
+	before_action :check_if_pushups_exist, only: [:private]
 	before_action :set_pushup, only: [:show, :edit, :update, :destroy]
 	# todo: before_action that redirects user if subdomain is not part of a team they belong to!
 
 	def private
 		user_pushups = Pushup.where(user_id: current_user.id)
-		# @pushups = hashify(user_pushups) # sort pushups by log date, create key:value pair
 		@pushups = hashify_team(user_pushups)
 		@dates = @pushups.keys.map {|p| p.strftime("%b %d")}
-		# @user_amounts = @pushups.values.map {|p| p }
 		@user_amounts = combine_daily_logs(@pushups)
-		# @user_sum = get_sum(@user_amounts)
 		@user_sum = combine_team_pushups(@pushups.keys, @user_amounts)
 	end
 
@@ -39,11 +37,8 @@ class DashboardController < ApplicationController
 
 	private
 
-		def hashify(pushups, hash={})
-			pushups.each do |p|
-				hash[p.date] = p.amount.to_i
-			end
-			hash.sort.to_h # sort returns array, revert back to hash
+		def check_if_pushups_exist
+			redirect_to new_pushup_path unless @user.pushups.count > 0
 		end
 
 		def hashify_team(pushups, output={})

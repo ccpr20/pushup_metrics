@@ -32,6 +32,7 @@ class RemindersController < ApplicationController
 
     if @reminder.save
       redirect_to dashboard_path
+      Reminder.send_instructions(@reminder.phone_number)
     else
       render :new
     end
