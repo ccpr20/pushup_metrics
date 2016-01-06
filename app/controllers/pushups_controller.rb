@@ -23,6 +23,7 @@ class PushupsController < ApplicationController
     month, day, year = params["pushup"]["date"].split("/")
     params["pushup"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
     @pushup = current_user.pushups.new(pushup_params)
+    
     if @pushup.save
       @pushup.teams << current_user_teams # associate pushup record to all of user's teams
       redirect_to dashboard_path
@@ -34,6 +35,9 @@ class PushupsController < ApplicationController
 
   # PATCH/PUT /pushups/1
   def update
+    month, day, year = params["pushup"]["date"].split("/")
+    params["pushup"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
+    
     if @pushup.update(pushup_params)
     	redirect_to dashboard_path
     else
@@ -44,17 +48,15 @@ class PushupsController < ApplicationController
   # DELETE /pushups/1
   def destroy
     @pushup.destroy
-      redirect_to history_path
+    redirect_to history_path
   end
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_pushup
       @pushup = Pushup.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def pushup_params
       params.require(:pushup).permit(:amount, :date, :user_id)
     end
