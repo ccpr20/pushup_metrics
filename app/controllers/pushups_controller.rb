@@ -1,8 +1,9 @@
 class PushupsController < ApplicationController
-	include PushupsHelper
-	include DashboardHelper
-	before_action :set_pushup, only: [:show, :edit, :update, :destroy]
-	before_action :authenticate_user!
+  include PushupsHelper
+  include DashboardHelper
+  before_action :set_pushup, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :reformat_date, only: [:create]
 
   # GET /pushups/new
   def new
@@ -20,8 +21,6 @@ class PushupsController < ApplicationController
 
 	# POST /pushups
   def create
-    month, day, year = params["pushup"]["date"].split("/")
-    params["pushup"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
     @pushup = current_user.pushups.new(pushup_params)
     
     if @pushup.save
@@ -35,8 +34,7 @@ class PushupsController < ApplicationController
 
   # PATCH/PUT /pushups/1
   def update
-    month, day, year = params["pushup"]["date"].split("/")
-    params["pushup"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
+    reformat_date if params["pushup"]["date"].include?("/")
     
     if @pushup.update(pushup_params)
     	redirect_to dashboard_path
@@ -52,6 +50,11 @@ class PushupsController < ApplicationController
   end
 
   private
+
+    def reformat_date
+      month, day, year = params["log"]["date"].split("/")
+      params["log"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
+    end
 
     def set_pushup
       @pushup = Pushup.find(params[:id])
