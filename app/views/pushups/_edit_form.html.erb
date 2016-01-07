@@ -3,7 +3,6 @@
 
   <div class="form-inputs">
     <%= f.input :amount, label: false, required: true, placeholder: "amount", input_html: {type: "tel", autocomplete: "off"} %>
-    <%= f.input :date, as: "string", label: false, required: true, input_html: {id: "dp", class: "datepicker"} %>
   </div>
 
   <div class="form-actions">
@@ -11,12 +10,3 @@
     <%= link_to "Back to History", history_path, class: 'btn btn-default' %>
   </div>
 <% end %>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.datepicker').datepicker(new Date());
-    $('#dp').on('change', function(){
-    $('.datepicker-dropdown').hide();
-    });
-  });
-</script>

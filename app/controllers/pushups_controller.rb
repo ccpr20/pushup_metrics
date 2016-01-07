@@ -3,7 +3,7 @@ class PushupsController < ApplicationController
   include DashboardHelper
   before_action :set_pushup, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :reformat_date, only: [:create, :update]
+  before_action :reformat_date, only: [:create]
 
   # GET /pushups/new
   def new
@@ -50,12 +50,8 @@ class PushupsController < ApplicationController
   private
 
     def reformat_date
-      if params["log"]["date"].include?("/")
-        month, day, year = params["log"]["date"].split("/")
-        params["log"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
-      else
-        nil
-      end
+      month, day, year = params["log"]["date"].split("/")
+      params["log"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
     end
 
     def set_pushup
