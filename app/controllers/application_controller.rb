@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
 	end
 
 	def after_sign_in_path_for(resource)
-		# current_user.teams.count > 1 ? choose_team_path	: redirect_team_choice
 		log_pushup_path
 	end
 
@@ -24,8 +23,7 @@ class ApplicationController < ActionController::Base
 
 	def configure_permitted_parameters
 		devise_parameter_sanitizer.for(:sign_up) { |u|
-			u.permit(:email, :name, :password, :password_confirmation, team_attributes: [:subdomain])
-		}
+			u.permit(:email, :name, :password, :password_confirmation, team_attributes: [:subdomain])}
 	end
 
 	def redirect_team_choice
