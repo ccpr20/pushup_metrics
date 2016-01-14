@@ -3,7 +3,7 @@ class PushupsController < ApplicationController
   include DashboardHelper
   before_action :set_pushup, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  # before_action :reformat_date, only: [:create]
+  before_action :reformat_date, only: [:create]
 
   # GET /pushups/new
   def new
@@ -22,9 +22,7 @@ class PushupsController < ApplicationController
 	# POST /pushups
   def create
     @pushup = current_user.pushups.new(pushup_params)
-    month, day, year = params["log"]["date"].split("/")
-    params["log"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
-    
+
     if @pushup.save
       @pushup.teams << current_user_teams # associate pushup record to all of user's teams
       redirect_to dashboard_path
@@ -52,8 +50,8 @@ class PushupsController < ApplicationController
   private
 
     def reformat_date
-      month, day, year = params["log"]["date"].split("/")
-      params["log"]["date"] = DateTime.new(year.to_i, month.to_i, day.to_i)
+      month, day, year = params['pushup']['date'].split("/")
+      params['pushup']['date'] = DateTime.new(year.to_i, month.to_i, day.to_i)
     end
 
     def set_pushup
