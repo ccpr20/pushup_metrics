@@ -3,8 +3,13 @@
   <h2 class="text-center">Sign Up</h2>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-		<%= f.input :name, label: false, placeholder: "Name", required: true, autofocus: true %>
+  <div class="form-inputs signup">
+    <%= f.input :name, label: false, placeholder: "Name", required: true, autofocus: true %>
+
+    <%= f.simple_fields_for :reminders do |r| %>
+      <%= r.input :phone_number, label: false, hint: "Daily SMS reminders to do your pushups.", placeholder: "Mobile Number (optional)" %>
+    <% end %>
+
     <%= f.input :email, label: false, placeholder: "Email",  required: true, autofocus: false %>
     <%= f.input :password, label: false, placeholder: "Password", required: true %>
   </div>
@@ -14,4 +19,12 @@
     <input type="submit" value="Sign up" class="btn btn-primary" %>
     <%= link_to "Go Back", root_path, class: "btn btn-default" %>
   </div>
+
 <% end %>
+
+<script>
+// Tooltip
+  $('[data-toggle="tooltip"]').tooltip({
+    container: 'body'
+    });
+</script>
