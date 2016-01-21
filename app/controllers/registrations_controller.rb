@@ -11,18 +11,12 @@ class RegistrationsController < Devise::RegistrationsController
     respond_with self.resource
   end
 
-  # def create
-  #   super
-  #   Peanus.ping "new user! (#{@user.name} // #{@user.email})"
-  # end
+  def create
+    super
+    Peanus.ping "new user! (#{@user.name} // #{@user.email})"
+  end
 
   protected
-
-  # def configure_permitted_parameters
-  #   devise_parameter_sanitizer.for(:sign_up) { |u|
-  #     u.permit(:email, :name, :company, :company_website, :password, reminders_attributes: [:phone_number, :user_id])
-  #   }
-  # end
 
   private
 
