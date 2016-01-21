@@ -32,7 +32,6 @@ class RemindersController < ApplicationController
 
     if @reminder.save
       redirect_to dashboard_path
-      Reminder.send_instructions(@reminder.phone_number)
     else
       render :new
     end
@@ -40,27 +39,25 @@ class RemindersController < ApplicationController
 
   # PATCH/PUT /reminders/1
   def update
-      if @reminder.update(reminder_params)
-      	redirect_to dashboard_path
-      else
-        render :edit
-      end
+    if @reminder.update(reminder_params)
+    	redirect_to dashboard_path
+    else
+      render :edit
+    end
   end
 
   # DELETE /reminders/1
   def destroy
     @reminder.destroy
-      redirect_to dashboard_path
+    redirect_to dashboard_path
   end
 
   private
 
-		# Use callbacks to share common setup or constraints between actions.
     def set_reminder
       @reminder = Reminder.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def reminder_params
       params.require(:reminder).permit(:phone_number, :time)
     end
