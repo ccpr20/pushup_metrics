@@ -7,7 +7,6 @@ class RegistrationsController < Devise::RegistrationsController
     # Override Devise default behaviour and create a reminder as well
     build_resource({})
     @reminder = resource.reminders.build
-    # resource.build_reminder
     respond_with self.resource
   end
 
@@ -15,8 +14,6 @@ class RegistrationsController < Devise::RegistrationsController
     super
     Peanus.ping "new user! (#{@user.name} // #{@user.email})"
   end
-
-  protected
 
   private
 
