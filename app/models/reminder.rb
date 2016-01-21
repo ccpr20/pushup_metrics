@@ -38,7 +38,7 @@ class Reminder < ActiveRecord::Base
 
 	def self.ask_the_weather
 		lat = ENV['GALVANIZE_SF_LAT']
-		lon = ENV['GALVANIZE_SF_Lon']
+		lon = ENV['GALVANIZE_SF_LON']
 		weather = ForecastIO.forecast(lat, lon)['currently']
 		forecast = weather.icon.downcase + weather.summary.downcase
 
