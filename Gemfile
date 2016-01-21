@@ -33,6 +33,7 @@ gem 'twilio-ruby'
 gem 'phony_rails' # validate phone numbers
 gem 'will_paginate'
 gem 'slack-notifier'
+gem 'forecast_io'
 
 group :development, :test do
 

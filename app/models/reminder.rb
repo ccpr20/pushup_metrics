@@ -27,14 +27,28 @@ class Reminder < ActiveRecord::Base
 	end
 
 	def self.send_slack_reminders
-    #todo: refactor for WYSIWYG team config
-    SlackBot.ping '@channel All right maggots, hit the roof and give me some pushups!'  unless is_weekend?
+		location = ask_the_weather
+    SlackBot.ping "@channel All right maggots, hit the #{location} and give me some pushups!"  unless is_weekend?
 	end
 
   def self.is_weekend?
     today = Date.today.strftime('%a')
     today == "Sat" || today == "Sun"
   end
+
+	def self.ask_the_weather
+		lat = ENV['GALVANIZE_SF_LAT']
+		lon = ENV['GALVANIZE_SF_Lon']
+		weather = ForecastIO.forecast(lat, lon)['currently']
+		forecast = weather.icon.downcase + weather.summary.downcase
+
+		# todo: include last couple hours because recent rain == wet roof
+		if forecast.include?('rain') || weather.temperature < 48
+			return "BASEMENT"
+		else
+			return "ROOF"
+		end
+	end
 
   def send_welcome_text
     client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
