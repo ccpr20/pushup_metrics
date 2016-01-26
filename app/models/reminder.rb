@@ -51,11 +51,15 @@ class Reminder < ActiveRecord::Base
 	end
 
   def send_welcome_text
-    client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-    client.messages.create(
-      from: ENV['TWILIO_PHONE_NUMBER'],
-      to: self.phone_number,
-      body: 'Welcome to Pushup Metrics! Text this number at any time with your latest pushup count for instant logging.')
+		if self.phone_number.present?
+	    client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+	    client.messages.create(
+	      from: ENV['TWILIO_PHONE_NUMBER'],
+	      to: self.phone_number,
+	      body: 'Welcome to Pushup Metrics! Text this number at any time with your latest pushup count for instant logging.')
+		else
+			self.destroy # devise reg new action creates blank reminder if no phone provided, remove that here
+		end
   end
 
 end
