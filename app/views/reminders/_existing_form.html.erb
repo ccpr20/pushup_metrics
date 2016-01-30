@@ -1,4 +1,7 @@
-<p>Edit or delete your phone below.</p>
+<% @reminders.each do |reminder| %>
+  <p>You're currently getting <strong>daily reminders</strong> at <%= reminder.time.strftime("%l" + ":" + "%m %p") %>.</p>
+  <p>If you want to change your reminder, simply remove it below and add it again.</p>
+<% end %>
 <table class="table">
   <thead>
     <tr>
@@ -9,8 +12,7 @@
 		<% @reminders.each do |reminder| %>
       <tr>
         <td><%= reminder.phone_number %></td>
-        <td><%= link_to 'Edit', edit_reminder_path(reminder) %></td>
-        <td><%= link_to 'Destroy', reminder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', reminder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
 		<% end %>
   </tbody>

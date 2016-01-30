@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
   def remember_me
     true
   end
-  
-	has_many :pushups
-	has_many :reminders
+
+	has_many :pushups, :dependent => :destroy
+	has_many :reminders, :dependent => :destroy
   accepts_nested_attributes_for :reminders
 
 	has_and_belongs_to_many :teams

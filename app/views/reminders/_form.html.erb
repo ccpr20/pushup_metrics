@@ -1,15 +1,27 @@
 <%= simple_form_for(@reminder) do |f| %>
   <%= f.error_notification %>
   <div class="form-inputs">
-		<%= f.input :phone_number, label: "Get daily SMS reminders to do your pushups.", placeholder: "(415) 261-3856" %>
-		<!-- Working timepicker, out of service -->
-		<!-- <input id="timepicker" type="text" class="time ui-timepicker-input form-control" placeholder= "3:30pm" name = "time" autocomplete="off"> -->
-  </div>
+		<%= f.input :phone_number, label: "Enter your mobile number.", placeholder: "(415) 261-3856", required: true %>
+    <div class="input-group bootstrap-timepicker timepicker">
+        <label>What time do you want a reminder?</label>
+        <input id="timepicker" name="reminder[time]" type="text" class="form-control input-small" required placeholder="3:00pm">
+    </div>
+    <label>Choose a timezone.</label>
+    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, include_blank: "Please Select", required: true %>
+  </div><br><br>
   <div class="form-actions">
     <%= f.button :submit, value: "Remind Me" %>
   </div>
 <% end %>
-<!--
+
 <script type="text/javascript">
-	$('#timepicker').timepicker();
-</script> -->
+  $(function() {
+    $('select').selectpicker(); // todo: render sooner
+
+    $('#timepicker').timepicker({
+        showInputs: false,
+        defaultTime: false,
+        minuteStep: 5
+    });
+  });
+</script>

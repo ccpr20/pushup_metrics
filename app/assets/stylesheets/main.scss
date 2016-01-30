@@ -26,6 +26,9 @@ p.teams {font-size: 16px}
 .navbar ul li:hover {color: #4ea7d9}
 .navbar ul li:hover a:hover {color: #4ea7d9}
 
+ // Reminders
+.bootstrap-select {width: 100% !important}
+.timepicker {margin-bottom: 15px}
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {

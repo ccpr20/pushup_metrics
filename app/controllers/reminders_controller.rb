@@ -21,15 +21,7 @@ class RemindersController < ApplicationController
 
   # POST /reminders
   def create
-		@reminder = current_user.reminders.new(reminder_params)
-		# todo: let users specify their own daily reminder text
-		# clock = params["time"].split(":")
-		# hour = clock[0].to_i
-		# minutes = clock[1][0..1]
-		# time_of_day = clock[1][2..3].downcase
-		# hour += 12 if time_of_day == "pm"
-		# params["time"] = Time.new("#{hour.to_s}:#{minutes.to_s}")
-
+    @reminder = current_user.reminders.new(reminder_params)
     if @reminder.save
       redirect_to dashboard_path
     else
@@ -59,6 +51,6 @@ class RemindersController < ApplicationController
     end
 
     def reminder_params
-      params.require(:reminder).permit(:phone_number, :time)
+      params.require(:reminder).permit(:phone_number, :time, :time_zone)
     end
 end
