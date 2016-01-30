@@ -89,9 +89,9 @@ class Reminder < ActiveRecord::Base
 		end
 	end
 
-	# receives user timezone and time preferences
+	# lookup user timezone and time preferences
 	def self.get_reminders_and_preferences
-    all_reminders = Reminder.all
+    all_reminders = Reminder.where('time IS NOT NULL and time_zone IS NOT NULL') # only retrieve users with custom prefs
     all_reminders.map {|r| {phone: r['phone_number'], time: r['time'], time_zone: r['time_zone']}}
 	end
 
