@@ -1,8 +1,9 @@
 class Reminder < ActiveRecord::Base
 	belongs_to :user
 	phony_normalize :phone_number, default_country_code: 'US'
-	# after_save :send_welcome_text
+	after_create :send_welcome_text
 
+	# rake task
 	def self.send_reminders
     unless is_weekend?
       client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
@@ -11,10 +12,19 @@ class Reminder < ActiveRecord::Base
     end
 	end
 
-	# generic
+	# rake task
+	def self.send_reminders_v2
+    unless is_weekend?
+      send_custom_sms_reminders
+    end
+	end
+
+	# generic afternoon reminder
 	def self.get_users_with_reminders
     all_reminders = Reminder.all
-    return all_reminders.map {|reminder| reminder.phone_number}
+
+		# below check for nil? -- don't text people at fixed time if they have a custom time set
+    return all_reminders.map {|reminder| reminder.phone_number if r.time.nil?}
 	end
 
 	def self.send_sms_reminders(client)
