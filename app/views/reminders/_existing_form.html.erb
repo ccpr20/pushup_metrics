@@ -1,6 +1,8 @@
 <% @reminders.each do |reminder| %>
-  <p>You're currently getting <strong>daily reminders</strong> at <%= reminder.time.strftime("%l" + ":" + "%m %p") %>.</p>
-  <p>If you want to change your reminder, simply remove it below and add it again.</p>
+  <% if reminder.time.present? %>
+    <p>You're currently getting <strong>daily reminders</strong> at <%= reminder.time.strftime("%l" + ":" + "%m %p") %>.</p>
+  <% end %>
+  <p>If you want to update your reminder, remove it below and add it again.</p>
 <% end %>
 <table class="table">
   <thead>
