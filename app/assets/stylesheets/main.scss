@@ -1,6 +1,7 @@
 /*Global*/
 body {font-family: Helvetica, Arial}
 .jumbotron {background-color: transparent; text-align: center}
+.jumbotron h1 {font-size: 46px}
 .gap {margin-top: 60px}
 .btn-primary {background-color: transparent; border-radius: 2px; border: 3px solid #4ea7d9;}
 .btn-default {background-color: transparent; border-radius: 2px; border: 3px solid #fff; color: white}
@@ -17,6 +18,7 @@ p.teams {font-size: 16px}
 /* Navbar*/
 .navbar {background-color: transparent; border: none}
 .navbar-default .navbar-nav > li > a {color: #fff;}
+.navbar-collapse {border-top: none; box-shadow: none}
 .navbar a.navbar-brand {color: #fff;}
 .navbar .btn-default {padding-top: 5px; padding-bottom: 5px; margin-top: 10px;}
 #navigation-icons a {display: inline-block; padding-left: 4px}
