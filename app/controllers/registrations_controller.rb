@@ -24,7 +24,8 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def set_person
-    if @user.reminders.first.phone_number.present? # check if phone provided
+    # reminder deleted via remove_nil_reminder if not provided
+    if @user.reminders.count > 0
       mixpanel.people.set(@user.id, {
         '$email' => @user.email,
         '$first_name' => @user.name.split[0],
