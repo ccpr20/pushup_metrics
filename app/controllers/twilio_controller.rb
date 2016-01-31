@@ -29,7 +29,7 @@ class TwilioController < ApplicationController
 
 	private
 
-		# this is a dupe method from dashboard_helper
+		# dupe method from dashboard_helper
 		def current_user_teams(user, arr=[])
 			teams = user.teams
 			teams.each do |team|

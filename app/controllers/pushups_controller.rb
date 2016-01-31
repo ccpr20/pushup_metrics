@@ -26,7 +26,6 @@ class PushupsController < ApplicationController
     if @pushup.save
       @pushup.teams << current_user_teams # associate pushup record to all of user's teams
       redirect_to dashboard_path
-      Peanus.ping "new pushup logged: #{@pushup.amount} by #{@user.name} // #{@user.email}"
     else
       render :new
     end
