@@ -9,6 +9,7 @@ class SessionsController < Devise::SessionsController
 		if @user.reminders.count > 0
 			mixpanel.people.set(@user.id, {
 				'$email' => @user.email,
+				'$id' => @user.id,
 				'$first_name' => @user.name.split[0],
 				'$last_name' => @user.name.split[1],
 				'$phone_number' => @user.reminders.first.phone_number
@@ -16,6 +17,7 @@ class SessionsController < Devise::SessionsController
 		else
 			mixpanel.people.set(@user.id, {
 				'$email' => @user.email,
+				'$id' => @user.id,
 				'$first_name' => @user.name.split[0],
 				'$last_name' => @user.name.split[1],
 				'$phone_number' => nil
