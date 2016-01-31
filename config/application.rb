@@ -1,9 +1,7 @@
 require File.expand_path('../boot', __FILE__)
-
 require 'rails/all'
+require 'mixpanel-ruby'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module Speedrail
@@ -13,7 +11,7 @@ module Speedrail
     ActionMailer::Base.smtp_settings = {
       :user_name => ENV['SENDGRID_USERNAME'],
       :password => ENV['SENDGRID_PASSWORD'],
-      :domain => 'freelancedebt.com',
+      :domain => 'www.pushupmetrics.com',
       :address => 'smtp.sendgrid.net',
       :port => 587,
       :authentication => :plain,

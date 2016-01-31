@@ -1,9 +1,9 @@
 class Reminder < ActiveRecord::Base
 	belongs_to :user
 	phony_normalize :phone_number, default_country_code: 'US'
-	after_create :send_welcome_text
+	after_create :send_welcome_text, if: "Rails.env.production?"
 
-	# rake task
+	# rake task for generic 3:30p PST reminders
 	def self.send_reminders
     unless is_weekend?
       client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
@@ -12,7 +12,7 @@ class Reminder < ActiveRecord::Base
     end
 	end
 
-	# rake task
+	# rake task for custom user prefs
 	def self.send_reminders_v2
     unless is_weekend?
       send_custom_sms_reminders
@@ -23,7 +23,7 @@ class Reminder < ActiveRecord::Base
 	def self.get_users_with_reminders
     all_reminders = Reminder.all
 
-		# below check for nil? -- don't text people at fixed time if they have a custom time set
+		# check for nil? -- don't text people at generic fixed time if they have a custom time pref
     return all_reminders.map {|reminder| reminder.phone_number if r.time.nil?}
 	end
 
@@ -69,8 +69,6 @@ class Reminder < ActiveRecord::Base
 	      to: self.phone_number,
 	      body: 'Welcome to Pushup Metrics! Text this number at any time with a pushup count for instant logging.
 							 To set your preferences, log in and click the Reminders tab.')
-		else
-			self.destroy # devise reg new action creates blank reminder if no phone provided, remove that here
 		end
   end
 

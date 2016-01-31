@@ -13,6 +13,8 @@ class DashboardController < ApplicationController
 		@dates = @pushups.keys.map {|p| p.strftime("%b %d")}
 		@user_amounts = combine_daily_logs(@pushups)
 		@user_sum = combine_team_pushups(@pushups.keys, @user_amounts)
+
+		mixpanel.track current_user.id, "View Personal Dashboard"
 	end
 
 	def team
@@ -23,6 +25,8 @@ class DashboardController < ApplicationController
 		@dates = @pushups.keys.map {|p| p.strftime("%b %d")}
 		@team_amounts = combine_daily_logs(@pushups) # when multiple entries exist on a single date
 		@combined_team_pushups = combine_team_pushups(@pushups.keys, @team_amounts)
+
+		mixpanel.track current_user.id, "View Team Dashboard"
 	end
 
 	def all_teams
@@ -30,6 +34,8 @@ class DashboardController < ApplicationController
 		redirect_to team_dashboard_path unless current_user.teams.count > 1
 		@teams = current_user.teams
 		@domain = request.domain
+
+		mixpanel.track current_user.id, "View All Teams"
 	end
 
 	def sorry

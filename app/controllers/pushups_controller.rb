@@ -17,6 +17,7 @@ class PushupsController < ApplicationController
   def history
     pushups = Pushup.where(user_id: current_user.id)
     @pushups = pushups.paginate(:page => params[:page], :per_page => 10).order('date DESC')
+    mixpanel.track current_user.id, "View Pushup History"
   end
 
 	# POST /pushups
@@ -26,6 +27,7 @@ class PushupsController < ApplicationController
     if @pushup.save
       @pushup.teams << current_user_teams # associate pushup record to all of user's teams
       redirect_to dashboard_path
+      mixpanel.track current_user.id, "Pushup Logged"
     else
       render :new
     end
@@ -44,6 +46,7 @@ class PushupsController < ApplicationController
   def destroy
     @pushup.destroy
     redirect_to history_path
+    mixpanel.track current_user.id, "Pushup Deleted"
   end
 
   private

@@ -8,7 +8,9 @@
 
   <div class="form-actions">
 		<input type="submit" value="Log" class='btn btn-primary' %>
-    <%= link_to "Back to Dashboard", dashboard_path, class: 'btn btn-default' %>
+    <% if current_user.pushups.count > 0 %>
+      <%= link_to "Back to Dashboard", dashboard_path, class: 'btn btn-default' %>
+    <% end %>
   </div>
 <% end %>
 

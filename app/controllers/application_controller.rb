@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
 	before_action :set_user
 	before_action :set_team
 	before_action :set_subdomain
+	before_action :mixpanel 
+
+  def mixpanel
+    @mixpanel ||= Mixpanel::Tracker.new ENV['MIXPANEL_TOKEN']
+  end
 
 	def set_user
 		@user = current_user if current_user

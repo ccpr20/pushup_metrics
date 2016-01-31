@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 	get 'oops', to: "dashboard#sorry", as: 'undefined_team'
 
 	match 'twilio/process_sms' => 'twilio#process_sms', via: [:get, :post]
-	get 'remind', to: "reminders#new", as: 'new_reminder'
+	get 'reminders', to: "reminders#new", as: 'new_reminder'
 	get 'existing', to: "reminders#existing", as: 'existing_reminder'
       resources :reminders
 
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 	get 'history', to: "pushups#history", as: 'history'
   resources :pushups
 
-  devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
+  devise_for :users, controllers: {registrations: "registrations", sessions: "sessions"}
   devise_scope :user do
     get 'start', to: "registrations#start", as: 'start'
     get 'signup', to: "registrations#new", as: 'signup'

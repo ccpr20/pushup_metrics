@@ -12,7 +12,8 @@
 
     <div class="collapse navbar-collapse" id="navbar-collapse" data-toggle="Collapse" data-target=".navbar-collapse">
       <% if current_user %>
-        <ul class="nav navbar-nav navbar-right" id="navigation-icons">
+      <ul class="nav navbar-nav navbar-right" id="navigation-icons">
+        <li><span class="icon icon-gauge"></span><%= link_to "Dashboard", dashboard_path %></li>
     	<% if user_has_team? %>
         <li><span class="icon icon-users"></span><%= link_to "Team", teams_path %></li>
     	<% end %>
