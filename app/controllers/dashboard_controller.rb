@@ -26,7 +26,7 @@ class DashboardController < ApplicationController
 		@team_amounts = combine_daily_logs(@pushups) # when multiple entries exist on a single date
 		@combined_team_pushups = combine_team_pushups(@pushups.keys, @team_amounts)
 
-		mixpanel.track current_user.id, "View Team Dashboard"
+		mixpanel.track current_user.id, "View Team Dashboard" if current_user 
 	end
 
 	def all_teams
