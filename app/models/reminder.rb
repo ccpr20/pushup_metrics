@@ -67,7 +67,8 @@ class Reminder < ActiveRecord::Base
 	    client.messages.create(
 	      from: ENV['TWILIO_PHONE_NUMBER'],
 	      to: self.phone_number,
-	      body: 'Welcome to Pushup Metrics! Text this number at any time with your latest pushup count for instant logging.')
+	      body: 'Welcome to Pushup Metrics! Text this number at any time with a pushup count for instant logging.
+							 To set your preferences, log in and click the Reminders tab.')
 		else
 			self.destroy # devise reg new action creates blank reminder if no phone provided, remove that here
 		end
