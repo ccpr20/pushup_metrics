@@ -24,7 +24,7 @@ class Reminder < ActiveRecord::Base
     all_reminders = Reminder.all
 
 		# check for nil? -- don't text people at generic fixed time if they have a custom time pref
-    return all_reminders.map {|reminder| reminder.phone_number if r.time.nil?}
+    return all_reminders.map {|reminder| reminder.phone_number if reminder.time.nil?}
 	end
 
 	def self.send_sms_reminders(client)
