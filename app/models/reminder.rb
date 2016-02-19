@@ -21,10 +21,9 @@ class Reminder < ActiveRecord::Base
 
 	# generic afternoon reminder
 	def self.get_users_with_reminders
-    all_reminders = Reminder.all
-
 		# check for nil? -- don't text people at generic fixed time if they have a custom time pref
-    return all_reminders.map {|reminder| reminder.phone_number if reminder.time.nil?}
+		all_reminders = Reminder.where('time' => nil).where('time_zone' => nil).where.not('phone_number' => nil)
+		all_reminders.map {|reminder| reminder.phone_number}
 	end
 
 	def self.send_sms_reminders(client)
@@ -34,6 +33,18 @@ class Reminder < ActiveRecord::Base
         from: ENV['TWILIO_PHONE_NUMBER'],
         to: user,
         body: 'Drop down and give me some pushups, maggot! (Reply to this message with an amount for instant logging.)')
+		end
+	end
+
+	# useful for sharing new features - change which reminders to fetch based on need
+	def send_sms_feature_update(users)
+		client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+
+		users.each do |user|
+		  client.messages.create(
+		    from: ENV['TWILIO_PHONE_NUMBER'],
+		    to: user,
+		    body: "Afternoon soldier! You can now customize what time you receive daily pushup reminders. Log in and hit 'Reminders' at www.pushupmetrics.com")
 		end
 	end
 
@@ -81,7 +92,7 @@ class Reminder < ActiveRecord::Base
 			selected_users.each do |user|
 	      client.messages.create(
 	        from: ENV['TWILIO_PHONE_NUMBER'],
-	        to: user[:phone],
+	        to: user[:phone_number],
 	        body: 'Drop down and give me some pushups, maggot! (Reply to this message with an amount for instant logging.)')
 			end
 		end
@@ -89,8 +100,8 @@ class Reminder < ActiveRecord::Base
 
 	# lookup user timezone and time preferences
 	def self.get_reminders_and_preferences
-    all_reminders = Reminder.where('time IS NOT NULL and time_zone IS NOT NULL') # only retrieve users with custom prefs
-    all_reminders.map {|r| {phone: r['phone_number'], time: r['time'], time_zone: r['time_zone']}}
+    all_reminders = Reminder.where.not('time' => nil).where.not('time_zone' => nil) # only retrieve users with custom prefs
+    all_reminders.map {|r| {phone_number: r['phone_number'], time: r['time'], time_zone: r['time_zone']}}
 	end
 
 	def self.parse_current_reminders(users)
@@ -100,6 +111,7 @@ class Reminder < ActiveRecord::Base
 			reminder = set_in_timezone(user[:time], user[:time_zone])
 			reminders_to_send << user if remind_now?(reminder)
 		end
+
 		reminders_to_send # return only those people needing a text now (10 min cron schedule)
 	end
 
