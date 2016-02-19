@@ -6,13 +6,12 @@ class Reminder < ActiveRecord::Base
 	# rake task for generic 3:30p PST reminders
 	def self.send_reminders
     unless is_weekend?
-      client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-      send_sms_reminders(client)
+      send_sms_reminders
       send_slack_reminders
     end
 	end
 
-	# rake task for custom user prefs
+	# rake task for custom user reminders
 	def self.send_reminders_v2
     unless is_weekend?
       send_custom_sms_reminders
@@ -26,8 +25,10 @@ class Reminder < ActiveRecord::Base
 		all_reminders.map {|reminder| reminder.phone_number}
 	end
 
-	def self.send_sms_reminders(client)
+	def self.send_sms_reminders
+		client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
     users = get_users_with_reminders
+
 		users.each do |user|
       client.messages.create(
         from: ENV['TWILIO_PHONE_NUMBER'],
@@ -37,16 +38,16 @@ class Reminder < ActiveRecord::Base
 	end
 
 	# useful for sharing new features - change which reminders to fetch based on need
-	def send_sms_feature_update(users)
-		client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-
-		users.each do |user|
-		  client.messages.create(
-		    from: ENV['TWILIO_PHONE_NUMBER'],
-		    to: user,
-		    body: "Afternoon soldier! You can now customize what time you receive daily pushup reminders. Log in and hit 'Reminders' at www.pushupmetrics.com")
-		end
-	end
+	# def send_sms_feature_update(users)
+	# 	client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+	#
+	# 	users.each do |user|
+	# 	  client.messages.create(
+	# 	    from: ENV['TWILIO_PHONE_NUMBER'],
+	# 	    to: user,
+	# 	    body: "Afternoon soldier! You can now customize what time you receive daily pushup reminders. Log in and hit 'Reminders' at www.pushupmetrics.com")
+	# 	end
+	# end
 
 	def self.send_slack_reminders
 		location = ask_the_weather
