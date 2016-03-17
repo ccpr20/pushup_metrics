@@ -26,15 +26,8 @@ class Reminder < ActiveRecord::Base
 	end
 
 	def self.send_sms_reminders
-		client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
     users = get_users_with_reminders
-
-		users.each do |user|
-      client.messages.create(
-        from: ENV['TWILIO_PHONE_NUMBER'],
-        to: user,
-        body: 'Drop down and give me some pushups, maggot! (Reply to this message with an amount for instant logging.)')
-		end
+		RemindersJob.perform_async(users)
 	end
 
 	# useful for sharing new features - change which reminders to fetch based on need
@@ -116,7 +109,8 @@ class Reminder < ActiveRecord::Base
 		reminders_to_send # return only those people needing a text now (10 min cron schedule)
 	end
 
-	# convert user's reminder time-of-day and their timezone into UTC, for scheduler rake task reminders
+	# convert user's reminder time-of-day and their timezone into UTC,
+	# for scheduler rake task reminders
 	def self.set_in_timezone(time, zone)
 	  Time.use_zone(zone) { time.to_datetime.change(offset: Time.zone.now.strftime("%z")) }
 	end

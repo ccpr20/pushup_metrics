@@ -35,6 +35,7 @@ gem 'will_paginate'
 gem 'slack-notifier'
 gem 'forecast_io'
 gem 'mixpanel-ruby'
+gem 'sucker_punch'
 
 group :development, :test do
 

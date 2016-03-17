@@ -232,6 +232,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sucker_punch (2.0.1)
+      concurrent-ruby (~> 1.0.0)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
@@ -294,6 +296,7 @@ DEPENDENCIES
   simple_form
   slack-notifier
   spring
+  sucker_punch
   turbolinks
   twilio-ruby
   twitter-bootstrap-rails!
