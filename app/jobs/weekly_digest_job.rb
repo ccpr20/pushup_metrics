@@ -7,11 +7,11 @@ class WeeklyDigestJob
       contenders = get_contenders
       record_holders = get_record_holders(contenders)
       users = User.find(recipients)
-    end
 
-    users.each do |user|
-      WeeklyDigest.send_records(user, record_holders).deliver_now
-      puts "Sent digest to #{user.name}"
+      users.each do |user|
+        WeeklyDigest.send_records(user, record_holders).deliver_now
+        puts "Sent digest to #{user.name}"
+      end
     end
   end
 
