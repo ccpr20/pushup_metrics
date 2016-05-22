@@ -15,3 +15,8 @@ Do pushups. Get Stronger.
 * Calorie counter
 * Weekly / monthly / annual projection alerts based on user's growth rate
 * What else?
+
+## Why commit?
+* ~200 users, growing daily
+* 78,000 pushups logged
+* Interactive: digest emails, SMS alerts, + 3rd party APIs integrated
