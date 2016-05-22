@@ -3,7 +3,7 @@ Do pushups. Get Stronger.
 
 ## Installation
 1. Clone repo
-2. Ensure postgresql is running, then  ```$ rake db:setup``` and ```$ rake db:migrate```
+2. With [Postgres](http://postgresapp.com/) running,  ```$ rake db:setup``` then ```$ rake db:migrate```
 3. Get config/application.yml from repo admin for ENV keys (if applicable)
 
 ## To Dos
