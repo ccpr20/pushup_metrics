@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-	before_action :send_to_dashboard?, only: [:home]
 
 	def home
+		redirect_to dashboard_path if current_user
  	end
 
 	def choose
@@ -9,8 +9,4 @@ class PagesController < ApplicationController
 		@domain = request.domain
 	end
 
-	private
-		def send_to_dashboard?
-			redirect_to dashboard_path if current_user
-		end
 end

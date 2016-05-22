@@ -2,7 +2,7 @@ class TwilioController < ApplicationController
 	skip_before_filter  :verify_authenticity_token # ignore CSRF exception block
 
   def process_sms
-		# todo: ignore message and skip operation if phone_number does not exist
+		# TODO: ignore message and skip operation if phone_number does not exist
 
 		# find user with matching phone number
 		reminder = Reminder.find_by(:phone_number => params["From"])
@@ -32,9 +32,12 @@ class TwilioController < ApplicationController
 		# dupe method from dashboard_helper
 		def current_user_teams(user, arr=[])
 			teams = user.teams
+
 			teams.each do |team|
 				arr << team
 			end
+			
 			arr
 		end
+
 end

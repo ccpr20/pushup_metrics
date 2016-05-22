@@ -18,7 +18,8 @@
         <li><span class="icon icon-users"></span><%= link_to "Team", teams_path %></li>
     	<% end %>
         <li><span class="icon icon-calendar"></span><%= link_to "History", history_path %></li>
-        <li><span class="icon icon-bell"></span><%= link_to "Reminders", new_reminder_path %></li>
+        <li><span class="icon icon-bell"></span><% if current_user.reminders.present? %><%= link_to "My Reminders", reminder_path(current_user.reminders.first.id) %>
+                                                <% else %><%= link_to "Reminders", new_reminder_path %><% end %></li>
         <li><span class="icon icon-cog"></span><%= link_to "Settings", settings_path %></li>
         <li><span class="icon icon-log-out"></span><%= link_to "Logout", logout_path, method: :delete %></li>
         </ul>

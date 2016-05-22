@@ -20,7 +20,7 @@ class Reminder < ActiveRecord::Base
 
 	# generic afternoon reminder
 	def self.get_users_with_reminders
-		# check for nil? -- don't text people at generic fixed time if they have a custom time pref
+		# don't text people at generic fixed time if they have a custom time pref
 		all_reminders = Reminder.where('time' => nil).where('time_zone' => nil).where.not('phone_number' => nil)
 		all_reminders.map {|reminder| reminder.phone_number}
 	end
@@ -30,7 +30,7 @@ class Reminder < ActiveRecord::Base
 		RemindersJob.perform_async(users)
 	end
 
-	# useful for sharing new features - change which reminders to fetch based on need
+	# for sharing new features - change which reminders to fetch based on need
 	# def send_sms_feature_update(users)
 	# 	client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
 	#
@@ -38,7 +38,7 @@ class Reminder < ActiveRecord::Base
 	# 	  client.messages.create(
 	# 	    from: ENV['TWILIO_PHONE_NUMBER'],
 	# 	    to: user,
-	# 	    body: "Afternoon soldier! You can now customize what time you receive daily pushup reminders. Log in and hit 'Reminders' at www.pushupmetrics.com")
+	# 	    body: "[[NEW FEATURE GOES HERE]]")
 	# 	end
 	# end
 
@@ -58,7 +58,7 @@ class Reminder < ActiveRecord::Base
 		weather = ForecastIO.forecast(lat, lon)['currently']
 		forecast = weather.icon.downcase + weather.summary.downcase
 
-		# todo: include last couple hours because recent rain == wet roof
+		# TODO: include last couple hours because recent rain == wet roof
 		if forecast.include?('rain') || weather.temperature < 48
 			return "BASEMENT"
 		else
@@ -122,7 +122,7 @@ class Reminder < ActiveRecord::Base
 		reminder_hour = reminder.utc.hour
 		reminder_minute = reminder.utc.min
 
-		# todo: account for hour mark breakpoints, ie 10:55 --> 11:05, which should work
+		# TODO: account for hour mark breakpoints, ie 10:55 --> 11:05, which should work but doesn't
 		current_hour == reminder_hour && ((current_minute - reminder_minute) <= 10 && (current_minute - reminder_minute) > 0)
 	end
 

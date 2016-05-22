@@ -38,7 +38,8 @@ class SessionsController < Devise::SessionsController
 			end
 		end
 
-		def user_already_on_team? # avoids create new Team object with existing Team ID
+		# avoids creating new Team object with existing Team ID
+		def user_already_on_team?
 			@user.teams.each do |t|
 				return true if t == @team
 			end

@@ -4,22 +4,13 @@ class RemindersController < ApplicationController
 
   # GET /reminders/new
   def new
-		if current_user.reminders.count > 0
-			redirect_to existing_reminder_path
-		else
-    	@reminder = current_user.reminders.new
-      mixpanel.track current_user.id, "Start Adding Reminder"
-		end
+  	@reminder = current_user.reminders.new
+    mixpanel.track current_user.id, "Start Adding Reminder"
   end
 
-	def existing
-		@reminders = current_user.reminders
+	def show
     mixpanel.track current_user.id, "View Reminders"
 	end
-
-  # GET /reminders/1/edit
-  def edit
-  end
 
   # POST /reminders
   def create
