@@ -1,0 +1,12 @@
+<p>Hi <%= @recipient_name %>, </p>
+
+<p>Here's what went down this week on Pushup Metrics:</p>
+
+<ul>
+  <% @records.each do |record| %>
+    <li><%= record[0] %> broke their personal best by <%= record[1] %>%!</li>
+  <% end %>
+</ul>
+
+<p>Keep up the good work, here's to getting buff.</p>
+<p>Sergeant Hartman</p>
