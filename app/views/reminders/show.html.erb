@@ -1,8 +1,10 @@
 <div class="col-md-12">
 	<div class="col-md-6">
 	<h1>All set!</h1><br>
-  <p>You're currently getting <strong>daily reminders</strong> at <%= @reminder.time.strftime("%l" + ":" + "%m %p") %>
-    to <%= @reminder.phone_number.phony_formatted(spaces: '-') %>.</p>
+	<% if @reminder.time.present? %>
+	  <p>You're currently getting <strong>daily reminders</strong> at <%= @reminder.time.strftime("%l" + ":" + "%m %p") %>
+	    to <%= @reminder.phone_number.phony_formatted(spaces: '-') %>.</p>
+	<% end %>
   <p>If you want to update your reminder, <%= link_to 'remove it', @reminder, method: :delete, data: {confirm: 'Are you sure?' } %> and add it again.</p>
   </div>
 </div>
