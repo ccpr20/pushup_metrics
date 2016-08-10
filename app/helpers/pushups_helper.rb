@@ -1,8 +1,7 @@
 module PushupsHelper
 
-	def get_sum(pushups, total=0)
-		pushups.each {|p| total += p}
-		total
+	def get_sum(pushups)
+		pushups.inject(0) { |sum, p| sum += p }
 	end
 
 	def global_pushups

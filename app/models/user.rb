@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
 	has_many :pushups, :dependent => :destroy
 	has_many :reminders, :dependent => :destroy
-  accepts_nested_attributes_for :reminders
+  accepts_nested_attributes_for :reminders, reject_if: proc { |attributes| attributes['phone_number'].blank? }
 
 	has_and_belongs_to_many :teams
 	accepts_nested_attributes_for :teams

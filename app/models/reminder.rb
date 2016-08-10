@@ -3,6 +3,8 @@ class Reminder < ActiveRecord::Base
 	phony_normalize :phone_number, default_country_code: 'US'
 	after_create :send_welcome_text, if: "Rails.env.production?"
 
+	validates_presence_of :phone_number
+
 	# rake task for generic 3:30p PST reminders
 	def self.send_reminders
     unless is_weekend?
