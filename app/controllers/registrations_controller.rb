@@ -1,7 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters
   after_action :set_team_slug, only: [:create]
-  after_action :remove_nil_reminder, only: [:create]
   after_action :set_person, only: [:create]
   after_action :update_slack, only: [:create]
 
@@ -43,12 +42,6 @@ class RegistrationsController < Devise::RegistrationsController
         })
     end
     mixpanel.track @user.id, "Signup"
-  end
-
-  def remove_nil_reminder
-    # remove empty reminder if no phone provided during registration
-    reminder = @user.reminders.first
-    reminder.destroy if reminder.phone_number.nil?
   end
 
   def set_team_slug
