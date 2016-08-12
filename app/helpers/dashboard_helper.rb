@@ -1,30 +1,13 @@
 module DashboardHelper
 
 	def hashify_team(pushups, output={})
-		pushups.each do |p|
-			output[p.date] = []
-		end
-		output.each do |date, amounts|
-			relevant_pushups = pushups.select {|p| p.date == date}
-			relevant_pushups.each do |rel|
-				amounts << rel.amount.to_i
-			end
-		end
-		output.sort.to_h # sort method returns array, so revert back to hash
+		pushups.map { |p| output.key?(p.date) ? output[p.date] << p.amount : output[p.date] = [p.amount] }
+		output
 	end
 
 	def combine_daily_logs(pushups, arr=[])
-		pushups.values.each do |values|
-			entries = values.count
-			counter = 0
-			total = 0
-			while counter < entries
-				total += values[counter]
-				counter += 1
-			end
-			arr << total
-		end
-			arr
+		pushups.values.each { |values| arr << values.reduce(0,:+) }
+		arr
 	end
 
 	def combine_team_pushups(dates, amounts, output={})
