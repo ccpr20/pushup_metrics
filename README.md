@@ -16,7 +16,10 @@ Do pushups. Get Stronger.
 * Weekly / monthly / annual projection alerts based on user's growth rate
 * What else?
 
-## Why commit?
+## Why contribute?
 * ~200 users, growing daily
-* 78,000 pushups logged
+* 93,000 pushups logged (August 2016)
 * Interactive: digest emails, SMS alerts, + 3rd party APIs integrated
+
+## Contributors
+[Ryan Kulp](http://www.ryanckulp.com), [Chris Bacon](https://github.com/baconck), you?
