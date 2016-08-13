@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
 	def private
 		user_pushups = Pushup.where(user_id: current_user.id)
 		@pushups = hashify_team(user_pushups)
-		@dates = @pushups.keys.map {|p| p.strftime("%b %d")}
+		@dates = @pushups.keys.map {|p| p.strftime("%b %d")}.sort
 		@user_amounts = combine_daily_logs(@pushups)
 		@user_sum = combine_team_pushups(@pushups.keys, @user_amounts)
 
@@ -21,7 +21,7 @@ class DashboardController < ApplicationController
 		team_pushups = current_team_pushups(@subdomain)
 
 		@pushups = hashify_team(team_pushups) # creates hash of pushup log date:amount
-		@dates = @pushups.keys.map {|p| p.strftime("%b %d")}
+		@dates = @pushups.keys.map {|p| p.strftime("%b %d")}.sort
 		@team_amounts = combine_daily_logs(@pushups) # when multiple entries exist on a single date
 		@combined_team_pushups = combine_team_pushups(@pushups.keys, @team_amounts)
 
