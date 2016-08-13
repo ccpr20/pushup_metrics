@@ -1,5 +1,5 @@
-# Pushup Tracker
-Do pushups. Get Stronger.
+# Pushup Metrics
+Do pushups. Get Stronger. http://www.pushupmetrics.com
 
 ## Installation
 1. Clone repo
