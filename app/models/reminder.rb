@@ -83,13 +83,14 @@ class Reminder < ActiveRecord::Base
 		client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
 		users = get_reminders_and_preferences
 		selected_users = parse_current_reminders(users)
-
+		message = create_reminder_message
 		unless selected_users.empty? # kill process if no reminders to send
 			selected_users.each do |user|
 	      client.messages.create(
 	        from: ENV['TWILIO_PHONE_NUMBER'],
 	        to: user[:phone_number],
-	        body: 'Drop down and give me some pushups, maggot! (Reply to this message with an amount for instant logging.)')
+	        body: message
+	      )
 			end
 		end
 	end
@@ -126,6 +127,21 @@ class Reminder < ActiveRecord::Base
 
 		# TODO: account for hour mark breakpoints, ie 10:55 --> 11:05, which should work but doesn't
 		current_hour == reminder_hour && ((current_minute - reminder_minute) <= 10 && (current_minute - reminder_minute) > 0)
+	end
+
+	def self.create_reminder_message
+		message = [
+			"Drop down and give me some pushups, maggot!",
+			"Pain is temporary, pride is forever.",
+			"Sweat is your fat crying.",
+			"Everything is hard before it is easy.",
+			"Excuses don't burn calories.",
+			"Make today's workout tomorrow's warmup.",
+			"Change doesn't happen over night.  Be patient.",
+			"Working out is a reward, not a punishment.",
+			"Work hard now, selfie later."
+		].sample
+		message + " (Reply to this message with pushup amount for instant logging.)"
 	end
 
 end
