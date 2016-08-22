@@ -52,4 +52,8 @@ module PushupsHelper
 		return 0 if team_count < 1
 	end
 
+	def calorie_burned(pushup_count)
+		pushup_count * 0.75
+	end
+	
 end

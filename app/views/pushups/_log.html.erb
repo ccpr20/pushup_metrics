@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Amount</th>
+      <th>Calories Burned*</th>
       <th>Date</th>
     </tr>
   </thead>
@@ -9,6 +10,7 @@
 	<% @pushups.each do |pushup| %>
 		<tr>
 			<td><%= pushup.amount %></td>
+			<td><%= calorie_burned(pushup.amount) %></td>
 			<td><%= pushup.date.strftime("%b %d, %Y") %></td>
 			<td><%= link_to "Edit", edit_pushup_path(pushup) %></td>
 			<td><%= link_to "Destroy", pushup_path(pushup), method: :delete %></td>
