@@ -3,6 +3,7 @@ require 'rails/all'
 require 'mixpanel-ruby'
 
 Bundler.require(*Rails.groups)
+Browser::Base.include(Browser::Aliases) # Configure browser gem to include aliases (i.e. mobile?)
 
 module Speedrail
   class Application < Rails::Application

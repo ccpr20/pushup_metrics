@@ -1,0 +1,25 @@
+<div class="col-md-12">
+	<div class="col-md-6">
+	<h1>Leaderboards</h1><br>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Athlete</th>
+        <th>Total Pushups</th>
+      </tr>
+    </thead>
+    <tbody>
+  	<% @leaders.each_with_index do |leader, idx| %>
+  		<tr>
+        <td><%= idx + 1 %></td>
+  			<td><%= leader.name %></td>
+        <td><%= leader.total_pushups %></td>
+  		</tr>
+  	<% end %>
+    </tbody>
+  </table>
+
+	</div>
+</div>
