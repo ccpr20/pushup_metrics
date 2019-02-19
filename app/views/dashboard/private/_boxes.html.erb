@@ -8,7 +8,7 @@
   <div class="col-sm-3">
     <div class="statcard statcard-info p-a-md">
 			<!-- Todo: refactor finding recent and best sets within nested arr of multiple inputs per day -->
-      <h3 class="statcard-number"><%= @pushups.values.last.last %></h3>
+      <h3 class="statcard-number"><%= @current_user.most_recent_set.amount %></h3>
       <span class="statcard-desc">Most Recent</span>
     </div>
   </div>
