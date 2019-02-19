@@ -3,8 +3,8 @@ Do pushups. Get Stronger. http://www.pushupmetrics.com
 
 ## Installation
 1. Clone repo
-2. With [Postgres](http://postgresapp.com/) running,  ```$ rake db:setup``` then ```$ rake db:migrate```
-3. Get config/application.yml from repo admin for ENV keys (if applicable)
+2. With [Postgres](http://postgresapp.com/) running,  ```$ bundle && rake db:setup && rake db:migrate```
+3. Get `config/application.yml` from repo admin
 
 ## To Do
 * Optimize SQL queries on team dashboard (controllers/dashboard_controller.rb, team action)
