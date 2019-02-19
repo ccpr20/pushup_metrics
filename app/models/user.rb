@@ -14,4 +14,7 @@ class User < ActiveRecord::Base
     true
   end
 
+  def total_pushups
+    pushups.inject(0) { |sum, p| sum += p.amount }
+  end
 end
