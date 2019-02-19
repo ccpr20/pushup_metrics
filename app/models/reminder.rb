@@ -47,7 +47,6 @@ class Reminder < ActiveRecord::Base
 	def self.send_slack_reminders
 		location = ask_the_weather
     Galvanize.ping "@channel All right maggots, hit the #{location} and give me some pushups!" unless is_weekend?
-		Distribute.ping "@channel All right maggots -- drop down and give me some pushups." unless is_weekend?
 	end
 
   def self.is_weekend?
