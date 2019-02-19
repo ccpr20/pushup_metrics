@@ -2,7 +2,8 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-		<%= f.input :amount, label: false, required: true, placeholder: "amount", input_html: {type: "tel", autocomplete: "off"} %>
+    <% amount_input_type = browser.mobile? ? 'tel' : 'number' %>
+		<%= f.input :amount, label: false, required: true, placeholder: "amount", input_html: {type: amount_input_type, pattern: '[0-9]*', autocomplete: "off"} %>
 		<%= f.input :date, as: "string", label: false, required: true, input_html: {id: "dp", class: "datepicker"} %>
   </div>
 

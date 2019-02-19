@@ -19,11 +19,13 @@
     	<% end %>
         <li><span class="icon icon-calendar"></span><%= link_to "History", history_path %></li>
         <li><span class="icon icon-bell"></span><%= reminder_link(current_user) %></li>
+        <li><span class="icon icon-bar-graph"></span><%= link_to "Leaderboard", leaderboard_index_path %></li>
         <li><span class="icon icon-cog"></span><%= link_to "Settings", settings_path %></li>
         <li><span class="icon icon-log-out"></span><%= link_to "Logout", logout_path, method: :delete %></li>
         </ul>
       <% else %>
       <ul class="nav navbar-nav navbar-right">
+        <li><span class="icon icon-bar-graph"></span><%= link_to "Leaderboard", leaderboard_index_path %></li>
         <li><%= link_to "Login", login_path, class: "btn btn-default" %></li>
         </ul>
       <% end %>

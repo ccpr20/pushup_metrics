@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.5'
+ruby '2.3.0'
 
 gem 'rails', '4.2.3'
 gem 'sass-rails', '~> 5.0'
@@ -31,6 +31,7 @@ gem 'slack-notifier'
 gem 'forecast_io'
 gem 'mixpanel-ruby'
 gem 'sucker_punch'
+gem 'browser', require: ['browser/browser', 'browser/aliases'] # Browser Detection for mobile vs desktop UX
 
 group :development, :test do
   gem 'byebug'

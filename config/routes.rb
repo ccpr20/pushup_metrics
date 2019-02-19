@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 	get 'history', to: "pushups#history", as: 'history'
   resources :pushups
 
+	resources :leaderboard
+
   devise_for :users, controllers: {registrations: "registrations", sessions: "sessions"}
   devise_scope :user do
     get 'start', to: "registrations#start", as: 'start'

@@ -19,7 +19,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def update_slack
-    Peanus.ping "new user! (#{@user.name} // #{@user.email})"
+    WoodiesSlack.ping "new user! (#{@user.name} // #{@user.email})"
   end
 
   def set_person

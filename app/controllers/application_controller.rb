@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 	before_action :set_user
 	before_action :set_team
 	before_action :set_subdomain
-	before_action :mixpanel 
+	before_action :mixpanel
 
   def mixpanel
     @mixpanel ||= Mixpanel::Tracker.new ENV['MIXPANEL_TOKEN']
@@ -27,8 +27,9 @@ class ApplicationController < ActionController::Base
 	end
 
 	def configure_permitted_parameters
-		devise_parameter_sanitizer.for(:sign_up) { |u|
-			u.permit(:email, :name, :password, :password_confirmation, team_attributes: [:subdomain])}
+		devise_parameter_sanitizer.permit(:sign_up) do |user|
+			user.permit(:email, :name, :password, :password_confirmation, team_attributes: [:subdomain])
+		end
 	end
 
 	def redirect_team_choice
