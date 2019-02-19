@@ -1,6 +1,6 @@
 <div class="col-md-12">
 	<div class="col-md-6">
-	<h1>Leaderboards</h1><br>
+	<h1>Leaderboard</h1><p>Trailing last 90 days</p><br>
 
   <table class="table">
     <thead>
@@ -14,7 +14,7 @@
   	<% @leaders.each_with_index do |leader, idx| %>
   		<tr>
         <td><%= idx + 1 %></td>
-  			<td><%= gravatar_tag leader.email, size: 25 %> <%= leader.name %></td>
+  			<td><%= gravatar_tag leader.email, size: 25 %> <%= leader.public_name %></td>
         <td><%= number_with_delimiter(leader.total_pushups_cache) %></td>
   		</tr>
   	<% end %>
