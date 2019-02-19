@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
   def total_pushups
     pushups.inject(0) { |sum, p| sum += p.amount }
   end
+
+  def most_recent_set
+    pushups.order('date desc').first
+  end
 end
