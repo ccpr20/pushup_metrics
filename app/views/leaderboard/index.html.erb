@@ -14,7 +14,7 @@
   	<% @leaders.each_with_index do |leader, idx| %>
   		<tr>
         <td><%= idx + 1 %></td>
-  			<td><%= leader.name %></td>
+  			<td><%= gravatar_tag leader.email, size: 25 %> <%= leader.name %></td>
         <td><%= leader.total_pushups %></td>
   		</tr>
   	<% end %>
