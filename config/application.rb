@@ -9,6 +9,9 @@ module Speedrail
   class Application < Rails::Application
     config.active_record.raise_in_transactional_callbacks = true
 
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+
     ActionMailer::Base.smtp_settings = {
       :user_name => ENV['SENDGRID_USERNAME'],
       :password => ENV['SENDGRID_PASSWORD'],
