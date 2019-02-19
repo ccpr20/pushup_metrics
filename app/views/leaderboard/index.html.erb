@@ -15,7 +15,7 @@
   		<tr>
         <td><%= idx + 1 %></td>
   			<td><%= gravatar_tag leader.email, size: 25 %> <%= leader.name %></td>
-        <td><%= number_with_delimiter(leader.total_pushups) %></td>
+        <td><%= number_with_delimiter(leader.total_pushups_cache) %></td>
   		</tr>
   	<% end %>
     </tbody>
