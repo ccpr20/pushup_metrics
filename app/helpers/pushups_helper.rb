@@ -5,7 +5,7 @@ module PushupsHelper
 	end
 
 	def global_pushups
-		pushups = Pushup.all
+		pushups = Pushup.where("amount <= ?", 400) # exclude potentially fake entries
 		pushups.map {|p| p.amount.to_i}
 	end
 
@@ -55,5 +55,5 @@ module PushupsHelper
 	def calorie_burned(pushup_count)
 		pushup_count * 0.75
 	end
-	
+
 end
