@@ -15,7 +15,8 @@
   		<tr>
         <td><%= idx + 1 %></td>
   			<td><%= public_avatar(leader) %> <%= leader.public_name %></td>
-        <td><%= number_with_delimiter(leader.total_pushups_cache) %></td>
+        <td><%= @user_ids[leader.id] %></td>
+        
   		</tr>
   	<% end %>
     </tbody>
