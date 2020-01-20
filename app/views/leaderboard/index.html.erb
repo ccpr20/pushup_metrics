@@ -14,8 +14,8 @@
   	<% @leaders.each_with_index do |leader, idx| %>
   		<tr>
         <td><%= idx + 1 %></td>
-  			<td><%= public_avatar(leader) %> <%= leader.public_name %></td>
-        <td><%= @user_ids[leader.id] %></td>
+  			<td><%= public_avatar(leader) %> <%= leader['public_name'] %></td>
+        <td><%= leader['total_pushup'] %></td>
         
   		</tr>
   	<% end %>
