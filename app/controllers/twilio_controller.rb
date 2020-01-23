@@ -10,7 +10,9 @@ class TwilioController < ApplicationController
 
 		# create vars for pushup record
 		@number_of_pushups = params["Body"].to_i
-		today = Date.today
+		# today = Date.today
+		today = DateTime.now
+		logger.debug today
 
 		if reminder.present?
 			user = User.find(user_id)
