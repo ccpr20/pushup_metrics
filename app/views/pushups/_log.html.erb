@@ -11,7 +11,7 @@
 		<tr>
 			<td><%= pushup.amount %></td>
 			<td><%= calorie_burned(pushup.amount) %></td>
-			<td><%= pushup.date.strftime("%b %d, %Y %H:%M:%S") %></td>
+			<td class="log_time"><%= pushup.date.strftime("%b %d, %Y %H:%M:%S") %></td>
 			<td><%= link_to "Edit", edit_pushup_path(pushup) %></td>
 			<td><%= link_to "Destroy", pushup_path(pushup), method: :delete %></td>
 		</tr>
@@ -19,3 +19,16 @@
 	<%= will_paginate(@pushups) %>
   </tbody>
 </table>
+
+<script>
+	$(function() {
+		const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "August", "September", "October", "November", "December"];
+
+		$('.log_time').each(function(idx, obj) {
+			var old_date_str = obj.innerHTML + ' GMT';
+			var date = new Date(Date.parse(old_date_str));
+			var new_date_str = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+			obj.innerHTML = new_date_str;
+		});
+	});
+</script>
