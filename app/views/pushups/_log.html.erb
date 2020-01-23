@@ -11,7 +11,7 @@
 		<tr>
 			<td><%= pushup.amount %></td>
 			<td><%= calorie_burned(pushup.amount) %></td>
-			<td><%= pushup.date.strftime("%b %d, %Y") %></td>
+			<td><%= pushup.date.strftime("%b %d, %Y %H:%M:%S") %></td>
 			<td><%= link_to "Edit", edit_pushup_path(pushup) %></td>
 			<td><%= link_to "Destroy", pushup_path(pushup), method: :delete %></td>
 		</tr>
