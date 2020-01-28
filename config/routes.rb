@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 	root 'pages#home'
 	get 'choose', to: "pages#choose", as: 'choose_team'
 
-	get 'dashboard', to: "dashboard#private", as: 'dashboard'
+  get 'dashboard', to: "dashboard#private", as: 'dashboard'
 	get 'team', to: "dashboard#team", as: 'team_dashboard'
 	get 'teams', to: "dashboard#all_teams", as: 'teams'
 	get 'oops', to: "dashboard#sorry", as: 'undefined_team'
@@ -14,7 +14,11 @@ Rails.application.routes.draw do
 	get 'history', to: "pushups#history", as: 'history'
   resources :pushups
 
-	resources :leaderboard
+  resources :leaderboard
+ 
+  resources :owner do
+    delete '/push_up', to: 'owner#delete_pushups', as: 'push_up'
+  end
 
   devise_for :users, controllers: {registrations: "registrations", sessions: "sessions"}
   devise_scope :user do

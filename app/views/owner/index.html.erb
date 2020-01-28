@@ -1,0 +1,34 @@
+<div class="col-md-12">
+	<div class="col-md-6">
+	<h1>Owner Panel</h1>
+  <h2>Users</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Company</th>
+        <th>Company Website</th>
+        <th>Email</th>
+        <th>Registration Date</th>
+        <th colspan=2>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @owners.each do |owner| %>
+        <tr>
+          <td><%= owner.name %></td>
+          <td><%= owner.company %></td>
+          <td><%= owner.company_website %></td>
+          <td><%= owner.email %></td>
+          <td><%= owner.created_at.strftime("%b %d, %Y") %></td>
+          <td><%= link_to "Delete Pushups", owner_push_up_path(owner), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete',  owner_path(owner), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+      <%= will_paginate(@owners) %>
+    </tbody>
+  </table>
+
+	</div>
+</div>
