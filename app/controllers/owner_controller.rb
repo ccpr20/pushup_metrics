@@ -1,10 +1,11 @@
 class OwnerController < ApplicationController
     before_action :authenticate_user!
+    before_action :check_admin
     before_action :set_user, only: [:destroy]
     before_action :set_pushups, only: [:delete_pushups]
 
     def index
-        users = User.all
+        users = User.where.not(email: 'murray_ben@yahoo.com')
         @owners = users.paginate(:page => params[:page], :per_page => 10).order('name')
     end
 
@@ -24,6 +25,12 @@ class OwnerController < ApplicationController
     end
 
     private
+        def check_admin
+            if current_user[:email] != 'murray_ben@yahoo.com'
+                redirect_to log_pushup_path
+            end
+        end
+
         def set_user
             @user = User.find(params[:id])
         end

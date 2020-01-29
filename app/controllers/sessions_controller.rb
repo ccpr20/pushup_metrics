@@ -26,24 +26,24 @@ class SessionsController < Devise::SessionsController
 		mixpanel.track @user.id, "Login"
 	end
 
-		def set_team_slug
-			# checks for existing team or creates new
-			@team = Team.find_by(subdomain: @subdomain)
-			if @team.present?
-				@user.teams << @team unless user_already_on_team?
-			else
-				team = Team.new(subdomain: @subdomain, name: @subdomain, user_id: @user.id)
-				team.save
-				@user.teams << team
-			end
+	def set_team_slug
+		# checks for existing team or creates new
+		@team = Team.find_by(subdomain: @subdomain)
+		if @team.present?
+			@user.teams << @team unless user_already_on_team?
+		else
+			team = Team.new(subdomain: @subdomain, name: @subdomain, user_id: @user.id)
+			team.save
+			@user.teams << team
 		end
+	end
 
-		# avoids creating new Team object with existing Team ID
-		def user_already_on_team?
-			@user.teams.each do |t|
-				return true if t == @team
-			end
-			false
+	# avoids creating new Team object with existing Team ID
+	def user_already_on_team?
+		@user.teams.each do |t|
+			return true if t == @team
 		end
+		false
+	end
 
 end
