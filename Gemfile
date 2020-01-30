@@ -32,6 +32,7 @@ gem 'forecast_io'
 gem 'mixpanel-ruby'
 gem 'sucker_punch'
 gem 'browser', require: ['browser/browser', 'browser/aliases'] # Browser Detection for mobile vs desktop UX
+gem 'csv'
 
 group :development, :test do
   gem 'byebug'

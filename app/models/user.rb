@@ -33,4 +33,16 @@ class User < ActiveRecord::Base
   def most_recent_set
     pushups.order('date desc').first
   end
+
+  def self.to_csv
+    fields = ['name', 'company', 'company_website', 'email', 'created_at']
+
+    CSV.generate(headers: true) do |csv|
+      csv << fields
+
+      all.each do |user|
+        csv << user.attributes.values_at(*fields)
+      end
+    end
+  end
 end

@@ -78,6 +78,7 @@ GEM
     coffee-script-source (1.10.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.2)
+    csv (3.1.2)
     debug_inspector (0.0.2)
     devise (4.1.1)
       bcrypt (~> 3.0)
@@ -252,6 +253,7 @@ DEPENDENCIES
   byebug
   chartjs-ror
   coffee-rails (~> 4.1.0)
+  csv
   devise
   figaro
   font-awesome-rails

@@ -7,9 +7,11 @@ class OwnerController < ApplicationController
     def index
         users = User.where.not(email: 'murray_ben@yahoo.com')
         @owners = users.paginate(:page => params[:page], :per_page => 10).order('name')
-    end
 
-    def show 
+        respond_to do |format|
+            format.html
+            format.csv { send_data users.to_csv, filename: "users-#{Date.today}.csv" }
+        end
     end
 
     def delete_pushups
