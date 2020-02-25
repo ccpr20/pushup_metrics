@@ -1,4 +1,4 @@
-# Pushup Metrics
+# Pushup Metrics 
 Do pushups. Get Stronger. http://www.pushupmetrics.com
 
 ## Installation
