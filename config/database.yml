@@ -4,22 +4,28 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
+
+# CHANGE DOSSIER.YML IF YOU CHANGE THIS FILE!!!
 default: &default
-  adapter: postgresql
+  adapter: <%= ENV['RAILS_DB_ADAPTER'] || 'postgresql' %>
+  host: <%= ENV['DB_HOST'] || 'localhost' %>
+  port: <%= ENV['DB_PORT'] || '5432' %>
+  username: <%= ENV['DB_USERNAME'] || 'postgres' %>
+  password: <%= ENV['DB_PASWORD'] || ''  %>
+  encoding: "unicode"
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
-  database: pushups_dev
+  database: <%= ENV['DB_NAME'] || 'pushups_dev' %>
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
+# Warning: The database defined as "test" will be erased
 test:
   <<: *default
-  database: pushups_test
+  database: pushups_test<%= ENV['TEST_ENV_NUMBER'] %>
 
 production:
   <<: *default
-  database: pushups_prod
+  database: <%= ENV['DB_NAME'] || 'pushups_prod' %>
+  pool: 32 # max workers is currently 32 so that's how big of a pool we need
