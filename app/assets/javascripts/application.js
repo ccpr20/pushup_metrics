@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require Chart
-//= require excanvas
+
+
 //= require chartjs-data-api
 //= require bootstrap-select
 //= require twitter/bootstrap

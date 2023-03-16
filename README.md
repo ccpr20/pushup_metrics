@@ -1,4 +1,4 @@
-# Pushup Metrics 
+# Pushup Metrics
 Do pushups. Get Stronger. http://www.pushupmetrics.com
 
 ## Installation
@@ -7,6 +7,9 @@ Do pushups. Get Stronger. http://www.pushupmetrics.com
 2. With [Postgres](http://postgresapp.com/) running,  ```$ bundle && bundle exec rake db:setup && rake db:migrate```
 3. Get `config/application.yml` from repo admin or start over with `config/application.yml.sample`
 
+## Incase of installation problems follow the following:
+1. Install xcode & xcode-select
+2. https://github.com/rvm/rvm/issues/4889
 ## To Do
 
 * Optimize SQL queries (e.g. `dashboard_controller#team`)

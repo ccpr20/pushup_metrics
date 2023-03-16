@@ -1,8 +1,8 @@
 @import "variables";
-@import "bootstrap";
-@import "bootstrap-sprockets";
+@import "lib/bootstrap.min";
+// @import "bootstrap-sprockets";
 @import "toolkit-inverse";
-@import "jquery-timepicker";
-@import "bootstrap-select";
-@import "font-awesome";
+@import "lib/jquery-timepicker.min";
+@import "lib/bootstrap-select.min";
+@import "lib/font-awesome.min";
 @import "main";
