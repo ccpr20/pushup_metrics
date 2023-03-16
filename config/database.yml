@@ -13,7 +13,7 @@ default: &default
   username: <%= ENV['DB_USERNAME'] || 'postgres' %>
   password: <%= ENV['DB_PASWORD'] || ''  %>
   encoding: "unicode"
-  pool: 5
+  pool: 5 
   timeout: 5000
 
 development:
