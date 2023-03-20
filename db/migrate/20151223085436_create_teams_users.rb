@@ -1,4 +1,4 @@
-class CreateTeamsUsers < ActiveRecord::Migration
+class CreateTeamsUsers < ActiveRecord::Migration[5.1]
   def change
     create_table :teams_users, :id => false do |t|
 			t.references :team

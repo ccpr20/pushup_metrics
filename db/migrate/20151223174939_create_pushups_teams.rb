@@ -1,4 +1,4 @@
-class CreatePushupsTeams < ActiveRecord::Migration
+class CreatePushupsTeams < ActiveRecord::Migration[5.1]
   def change
     create_table :pushups_teams, :id => false do |t|
 			t.references :pushup
