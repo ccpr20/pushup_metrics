@@ -5,6 +5,5 @@ class CreateTeamsUsers < ActiveRecord::Migration[5.1]
 			t.references :user
     end
 		add_index :teams_users, [:team_id, :user_id]
-    add_index :teams_users, :user_id
   end
 end
