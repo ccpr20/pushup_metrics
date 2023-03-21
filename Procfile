@@ -1,3 +1,3 @@
 release: rake db:migrate
 
-rake assets:precompile
+web:rake assets:precompile
