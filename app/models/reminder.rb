@@ -1,7 +1,7 @@
 class Reminder < ActiveRecord::Base
 	belongs_to :user
 	phony_normalize :phone_number, default_country_code: 'US'
-	after_create :send_welcome_text, if: "Rails.env.production?"
+	# after_create :send_welcome_text, if: "Rails.env.production?"
 
 	validates_presence_of :phone_number
 

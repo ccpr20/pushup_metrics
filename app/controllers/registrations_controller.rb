@@ -1,8 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
-  before_filter :configure_permitted_parameters
+  # before_filter :configure_permitted_parameters
   after_action :set_team_slug, only: [:create]
   after_action :set_person, only: [:create]
-  after_action :update_slack, only: [:create]
+  # after_action :update_slack, only: [:create]
 
   # GET /signup
   def new
@@ -18,9 +18,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def update_slack
-    WoodiesSlack.ping "new user! (#{@user.name} // #{@user.email})"
-  end
+  # def update_slack
+    # WoodiesSlack.ping "new user! (#{@user.name} // #{@user.email})"
+  # end
 
   def set_person
     # reminder deleted via remove_nil_reminder if not provided
