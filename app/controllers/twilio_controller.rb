@@ -1,5 +1,5 @@
 class TwilioController < ApplicationController
-	skip_before_filter  :verify_authenticity_token # ignore CSRF exception block
+	# skip_before_action  :verify_authenticity_token # ignore CSRF exception block
 
   def process_sms
 		# TODO: ignore message and skip operation if phone_number does not exist
@@ -37,7 +37,7 @@ class TwilioController < ApplicationController
 			teams.each do |team|
 				arr << team
 			end
-			
+
 			arr
 		end
 
