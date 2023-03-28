@@ -55,7 +55,7 @@ $(function () {
         barDatasetSpacing: 2
       }, attrData)
 
-      new Chart(element.getContext('2d')).Bar(data, options)
+      new Chart(element.getContext('2d'), {type: 'bar', data: data, options: options})
     },
 
     line: function (element) {
@@ -91,8 +91,8 @@ $(function () {
           return label.value.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
         }
       }, attrData)
-
-      new Chart(element.getContext('2d')).Line(data, options)
+      debugger
+      new Chart(element.getContext('2d'), {type: 'line', data: data, options: options})
     },
 
     'spark-line': function (element) {
@@ -122,8 +122,8 @@ $(function () {
         pointDot: false,
         showTooltips: false
       }, attrData)
-
-      new Chart(element.getContext('2d')).Line(data, options)
+      debugger
+      new Chart(element.getContext('2d'), {type: 'line', data: data, options: options})
     }
   }
 
