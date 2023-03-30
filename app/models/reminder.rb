@@ -74,7 +74,7 @@ class Reminder < ActiveRecord::Base
 	    client.messages.create(
 	      from: ENV['TWILIO_PHONE_NUMBER'],
 	      to: self.phone_number,
-	      body: 'Welcome to Pushup Metrics! Text this number at any time with a pushup count for instant logging. (To set your preferences, log in and click the Reminders tab.)')
+	      body: 'Welcome to Minutes Metrics! Text this number at any time with a minutes count for instant logging. (To set your preferences, log in and click the Reminders tab.)')
 		end
   end
 
@@ -131,7 +131,7 @@ class Reminder < ActiveRecord::Base
 
 	def self.create_reminder_message
 		message = [
-			"Drop down and give me some pushups, maggot!",
+			"Drop down and give me some minutes, maggot!",
 			"Pain is temporary, pride is forever.",
 			"Sweat is your fat crying.",
 			"Everything is hard before it is easy.",
@@ -139,9 +139,10 @@ class Reminder < ActiveRecord::Base
 			"Make today's workout tomorrow's warmup.",
 			"Change doesn't happen over night.  Be patient.",
 			"Working out is a reward, not a punishment.",
-			"Work hard now, selfie later."
+			"Work hard now, selfie later.",
+			"Did you log Pelo minutes today? "
 		].sample
-		message + " (Reply to this message with pushup amount for instant logging.)"
+		message + " (Reply with your number in minutes to log your activity today.)"
 	end
 
 end
