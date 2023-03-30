@@ -15,6 +15,7 @@ gem 'devise', '~> 4.8.0'
 gem 'devise_invitable', '1.7.0' # issues arose when updating to 1.7.3 - sticking to 1.7.0
 gem 'simple-navigation-bootstrap', '~> 1.0.2'
 gem 'coffee-rails', '~> 4.2'
+gem 'country_select', '~> 4.0'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'twitter-bootstrap-rails'

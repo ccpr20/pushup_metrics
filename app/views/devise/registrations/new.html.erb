@@ -7,6 +7,8 @@
     <%= f.input :name, label: false, placeholder: "Name", required: true, autofocus: true %>
     <%= f.input :email, label: false, placeholder: "Email",  required: true, autofocus: false %>
     <%= f.input :password, label: false, placeholder: "Password", required: true %>
+    <%= f.input :age, label: false, placeholder: "Age", required: false %>
+    <%= f.country_select :country, as: :select, label: false,  placeholder: "Please select your Country",:include_blank => false , required: true %>
     <!-- phone number input not working  -->
     <!-- <%= f.simple_fields_for :reminders do |r| %>
       <%= r.input :phone_number, required: false, label: false, hint: "Daily SMS reminders to do your pushups.", placeholder: "Mobile Number (optional)" %>

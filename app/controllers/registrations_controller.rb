@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  # before_filter :configure_permitted_parameters
+  before_action :configure_permitted_parameters
   after_action :set_team_slug, only: [:create]
   after_action :set_person, only: [:create]
   # after_action :update_slack, only: [:create]

@@ -8,6 +8,8 @@
         <th>Rank</th>
         <th>Athlete</th>
         <th>Total Minutes</th>
+        <th>Country</th>
+        <th>Age</th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +18,8 @@
         <td><%= idx + 1 %></td>
   			<td><%= public_avatar(leader) %> <%= leader['name'] %></td>
         <td><%= leader['total_pushup'] %></td>
-        
+        <td><%= leader['country'] %></td>
+        <td><%= leader['age'] %></td>
   		</tr>
   	<% end %>
     </tbody>
