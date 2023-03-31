@@ -170,6 +170,8 @@ GEM
     minitest (5.18.0)
     mixpanel-ruby (2.3.0)
     multi_json (1.15.0)
+    net-http (0.3.2)
+      uri
     net-imap (0.3.4)
       date
       net-protocol
@@ -299,6 +301,7 @@ GEM
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode_utils (1.4.0)
+    uri (0.12.1)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (3.7.0)
@@ -341,6 +344,7 @@ DEPENDENCIES
   jquery-turbolinks (~> 2.1.0)
   metamagic
   mixpanel-ruby
+  net-http
   nokogiri (~> 1.13.10)
   pg (~> 1.1b)
   phony_rails
