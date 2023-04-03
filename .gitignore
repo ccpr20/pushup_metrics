@@ -12,5 +12,8 @@
 
 # Ignore environment variables
 /config/application.yml
+.cache
+.DS_Store
+.idea
 
 # Ignore custom initializers

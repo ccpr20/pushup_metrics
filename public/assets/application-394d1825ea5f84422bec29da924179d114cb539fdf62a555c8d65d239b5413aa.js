@@ -11706,7 +11706,7 @@ $(function () {
         }
       }, attrData)
 
-      new Chart(element.getContext('2d')).Line(data, options)
+      new Chart(element.getContext('2d'), {type: 'line', data: data, options: options})
     },
 
     'spark-line': function (element) {
@@ -11737,7 +11737,7 @@ $(function () {
         showTooltips: false
       }, attrData)
 
-      new Chart(element.getContext('2d')).Line(data, options)
+      new Chart(element.getContext('2d'), {type: 'line', data: data, options: options})
     }
   }
 
@@ -17867,7 +17867,7 @@ $(function () {
 /**
  * French (Switzerland) translation for bootstrap-datepicker
  * Christoph Jossi <c.jossi@ascami.ch>
- * Based on 
+ * Based on
  * French translation for bootstrap-datepicker
  * Nico Mollet <nico.mollet@gmail.com>
  */
@@ -18039,7 +18039,7 @@ $(function () {
 /**
  * Italian (Switzerland) translation for bootstrap-datepicker
  * Christoph Jossi <c.jossi@ascami.ch>
- * Based on 
+ * Based on
  * Italian translation for bootstrap-datepicker
  * Enrico Rubboli <rubboli@gmail.com>
  */
@@ -18923,7 +18923,7 @@ Copyright © 2018 Basecamp, LLC
 
 }).call(this);
 $(function() {
-  $('select').selectpicker(); 
+  $('select').selectpicker();
 
   $('#timepicker').timepicker({
       showInputs: false,
