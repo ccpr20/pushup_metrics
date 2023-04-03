@@ -11669,7 +11669,7 @@ $(function () {
         barDatasetSpacing: 2
       }, attrData)
 
-      new Chart(element.getContext('2d')).Bar(data, options)
+      new Chart(element.getContext('2d'), {type: 'bar', data: data, options: options})
     },
 
     line: function (element) {
