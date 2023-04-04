@@ -15,5 +15,5 @@
 .cache
 .DS_Store
 .idea
-
+/public
 # Ignore custom initializers
