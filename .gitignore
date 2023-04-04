@@ -1,5 +1,6 @@
 # Ignore bundler config.
 /.bundle
+/vendor/bundle/
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -9,6 +10,18 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Netbeans project directory
+/nbproject/
+
+# RubyMine project files
+.idea
+
+# Textmate project files
+/*.tmproj
+
+# vim artifacts
+**.swp
 
 # Ignore environment variables
 /config/application.yml
