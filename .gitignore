@@ -23,7 +23,7 @@
 # vim artifacts
 **.swp
 
-/public/assets
+
 
 # Ignore environment variables
 /config/application.yml
