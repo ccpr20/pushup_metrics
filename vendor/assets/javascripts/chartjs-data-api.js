@@ -91,7 +91,6 @@ $(function () {
           return label.value.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
         }
       }, attrData)
-      debugger
       new Chart(element.getContext('2d'), {type: 'line', data: data, options: options})
     },
 
@@ -122,7 +121,6 @@ $(function () {
         pointDot: false,
         showTooltips: false
       }, attrData)
-      debugger
       new Chart(element.getContext('2d'), {type: 'line', data: data, options: options})
     }
   }
