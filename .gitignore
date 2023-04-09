@@ -24,7 +24,7 @@
 **.swp
 
 /public/assets
-
+.bin
 # Ignore environment variables
 /config/application.yml
 .cache
