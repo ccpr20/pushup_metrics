@@ -30,6 +30,9 @@ class ApplicationController < ActionController::Base
 		devise_parameter_sanitizer.permit(:sign_up) do |user|
 			user.permit(:email, :name, :password, :password_confirmation, team_attributes: [:subdomain])
 		end
+		devise_parameter_sanitizer.permit(:account_update) do |user|
+			user.permit(:email, :name, :password, :password_confirmation, :current_password, :company,:company_website, team_attributes: [:subdomain])
+		end
 	end
 
 	def redirect_team_choice
