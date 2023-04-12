@@ -11,6 +11,7 @@ class DashboardController < ApplicationController
 		@pushups = hashify_team(user_pushups)
 		@dates = @pushups.keys.map {|p| p.strftime("%b %d")} #.sort
 		@user_amounts = combine_daily_logs(@pushups)
+		@last_seven_amounts = combine_weekly_logs(user_pushups, Date.today)
 		@user_sum = combine_team_pushups(@pushups.keys, @user_amounts)
 
 		mixpanel.track current_user.id, "View Personal Dashboard"

@@ -19,6 +19,18 @@ module DashboardHelper
 		output
 	end
 
+	def combine_weekly_logs(pushups, today)
+		total = 0
+		seventh_day = today -7
+		date = today
+			while date > seventh_day
+				current_records =  pushups.find_by(date:  date)
+				current_records.tap do    |r|total += r.amount end if current_records.present?
+				date-=1
+			end
+			return total
+	end
+
 	def current_team_pushups(subdomain, arr=[])
 		current_team_id = Team.find_by(subdomain: subdomain).id
 		all_pushups = Pushup.all
