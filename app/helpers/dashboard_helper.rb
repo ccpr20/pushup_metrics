@@ -24,8 +24,8 @@ module DashboardHelper
 		seventh_day = today -7
 		date = today
 			while date > seventh_day
-				current_records =  pushups.find_by(date:  date)
-				current_records.tap do    |r|total += r.amount end if current_records.present?
+				current_records =  pushups.where(date:  date)
+				current_records.map do |r| total += r.amount end if current_records.present?
 				date-=1
 			end
 			return total
