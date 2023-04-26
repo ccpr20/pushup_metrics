@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 
 	def home
+		puts 'actionmailer config ', ActionMailer::Base.smtp_settings
 		redirect_to dashboard_path if current_user
  	end
 
