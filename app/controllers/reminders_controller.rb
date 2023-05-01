@@ -4,7 +4,6 @@ class RemindersController < ApplicationController
 
   # GET /reminders/new
   def new
-    byebug
   	@reminder = current_user.reminders.new
     mixpanel.track current_user.id, "Start Adding Reminder"
   end
@@ -16,7 +15,6 @@ class RemindersController < ApplicationController
   # POST /reminders
   def create
     @reminder = current_user.reminders.new(reminder_params)
-    byebug
     if @reminder.save
       flash.now[:notice] = "Reminder created!"
       redirect_to dashboard_path
