@@ -23,6 +23,9 @@
 # vim artifacts
 **.swp
 
+.idea/workspace.xml
+.byebug_history
+
 /public/assets
 .bin
 # Ignore environment variables
