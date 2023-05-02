@@ -14,6 +14,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def edit
     mixpanel.track current_user.id, "View Settings"
+    byebug
   end
 
   private
@@ -57,17 +58,19 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
 	def sign_up_params
-    params.require(:user).permit(:email, :name, :company, :company_website, :password, reminders_attributes: [:phone_number])
+    params.require(:user).permit(:email, :name, :company, :age, :company_website, :password, reminders_attributes: [:phone_number])
 	end
 
 	def account_update_params
-    params.require(:user).permit(:email, :name, :company, :company_website, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:email, :name ,:age, :company, :company_website, :password, :password_confirmation, :current_password)
 	end
 
   def update_resource(resource, params)
-    if params[:password]
+    if params[:password] != ""
       resource.password = params[:password]
+      resource.update_without_password(params.except("current_password"))
+    else
+      resource.update_without_password(params.except("current_password"))
     end
-    resource.update_without_password(params.except("current_password"))
   end
 end

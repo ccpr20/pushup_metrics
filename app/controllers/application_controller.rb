@@ -28,12 +28,11 @@ class ApplicationController < ActionController::Base
 	end
 
 	def configure_permitted_parameters
-		puts 'actionmailer config ', ActionMailer::Base.smtp_settings
 		devise_parameter_sanitizer.permit(:sign_up) do |user|
-			user.permit(:email, :name, :password, :password_confirmation, team_attributes: [:subdomain])
+			user.permit(:email, :name, :password, :age, :password_confirmation, team_attributes: [:subdomain])
 		end
 		devise_parameter_sanitizer.permit(:account_update) do |user|
-			user.permit(:email, :name, :password, :password_confirmation, :current_password, :company,:company_website, team_attributes: [:subdomain])
+			user.permit(:email, :name, :age, :password, :password_confirmation, :current_password, :company,:company_website, team_attributes: [:subdomain])
 		end
 	end
 
