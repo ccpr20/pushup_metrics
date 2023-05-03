@@ -14,7 +14,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def edit
     mixpanel.track current_user.id, "View Settings"
-    byebug
   end
 
   private

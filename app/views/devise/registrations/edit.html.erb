@@ -26,5 +26,13 @@
 				<%= link_to "Back to Dashboard", dashboard_path, class: "btn btn-default" %>
 			</div>
 		</div>
+		<div class="col-md-12">
+			<p>
+  			We hate to see you go.
+  			<%= link_to "Delete my account",       registration_path(current_user),
+      data: { confirm: "Are you sure?" },
+      method: :delete %>.
+			</p>
+		</div>
 	</div>
 <% end %>
