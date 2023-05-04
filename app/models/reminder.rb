@@ -74,7 +74,7 @@ class Reminder < ActiveRecord::Base
 	    client.messages.create(
 	      from: ENV['TWILIO_PHONE_NUMBER'],
 	      to: self.phone_number,
-	      body: 'Welcome to Minutes Metrics! Text this number at any time with a minutes count for instant logging. (To set your preferences, log in and click the Reminders tab.)')
+	      body: 'Welcome to pelo Metrics! Text this number or +1(877)-554-4582 at any time with a minutes count for instant logging. (To set your preferences, log in and click the Reminders tab in pelometrics.io .)')
 		end
   end
 
