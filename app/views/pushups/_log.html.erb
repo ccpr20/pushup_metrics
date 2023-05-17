@@ -23,7 +23,7 @@
 		const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "August", "September", "October", "November", "December"];
 
 		$('.log_time').each(function(idx, obj) {
-			var old_date_str = obj.innerHTML + ' GMT';
+			var old_date_str = obj.innerHTML + ' UTC';
 			var date = new Date(Date.parse(old_date_str));
 			var new_date_str = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
 			obj.innerHTML = new_date_str;

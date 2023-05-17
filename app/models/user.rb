@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates_presence_of :email
+  validate  :over_18
 
 	has_many :pushups, :dependent => :destroy
 	has_many :reminders, :dependent => :destroy
@@ -34,6 +35,11 @@ class User < ActiveRecord::Base
     pushups.order('date desc').first
   end
 
+  def over_18
+    if age + 18.years >= Date.today
+      errors.add(:age, "You must be over 18 to signup.")
+    end
+  end
   def self.to_csv
     fields = ['name', 'company', 'company_website', 'email', 'created_at']
 

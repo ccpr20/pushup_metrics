@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_30_232112) do
+ActiveRecord::Schema.define(version: 2023_05_16_085753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,17 +19,18 @@ ActiveRecord::Schema.define(version: 2023_03_30_232112) do
     t.integer "amount"
     t.datetime "date", null: false
     t.integer "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "team_id"
     t.index ["team_id"], name: "index_pushups_on_team_id"
     t.index ["user_id"], name: "index_pushups_on_user_id"
   end
 
   create_table "pushups_teams", id: false, force: :cascade do |t|
-    t.integer "pushup_id"
-    t.integer "team_id"
+    t.bigint "pushup_id"
+    t.bigint "team_id"
     t.index ["pushup_id", "team_id"], name: "index_pushups_teams_on_pushup_id_and_team_id"
+    t.index ["pushup_id"], name: "index_pushups_teams_on_pushup_id"
     t.index ["team_id"], name: "index_pushups_teams_on_team_id"
   end
 
@@ -52,9 +53,10 @@ ActiveRecord::Schema.define(version: 2023_03_30_232112) do
   end
 
   create_table "teams_users", id: false, force: :cascade do |t|
-    t.integer "team_id"
-    t.integer "user_id"
+    t.bigint "team_id"
+    t.bigint "user_id"
     t.index ["team_id", "user_id"], name: "index_teams_users_on_team_id_and_user_id"
+    t.index ["team_id"], name: "index_teams_users_on_team_id"
     t.index ["user_id"], name: "index_teams_users_on_user_id"
   end
 
@@ -76,7 +78,7 @@ ActiveRecord::Schema.define(version: 2023_03_30_232112) do
     t.string "company_website"
     t.integer "total_pushups_cache", default: 0
     t.string "country", default: "USA", null: false
-    t.integer "age"
+    t.date "age"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

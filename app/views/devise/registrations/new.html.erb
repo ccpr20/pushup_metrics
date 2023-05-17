@@ -2,12 +2,22 @@
 
   <h2 class="text-center">Sign Up</h2>
   <%= f.error_notification %>
-
+  <% if f.object.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <ul>
+        <% f.object.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+        <%- end %>
+      </ul>
+    </div>
+  <%- end%>
   <div class="form-inputs signup">
     <%= f.input :name, label: false, placeholder: "Name", required: true, autofocus: true %>
     <%= f.input :email, label: false, placeholder: "Email",  required: true, autofocus: false %>
     <%= f.input :password, label: false, placeholder: "Password", required: true %>
-    <%= f.input :age, label: false, placeholder: "Age(Optional)", required: false %>
+    <%= f.date_field :age, label: false, placeholder: "Age(Optional)", required: false, class: "form-control date-field" %>
     <%= f.country_select :country, as: :select, label: true,  placeholder: "Please select your Country",:include_blank => false , required: true %>
     <!-- phone number input not working  -->
     <!-- <%= f.simple_fields_for :reminders do |r| %>

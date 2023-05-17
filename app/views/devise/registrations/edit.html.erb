@@ -6,17 +6,29 @@
 		</div>
 		<div class="col-md-4">
 		<%= f.error_notification %>
-		<div class="form-inputs">
-				<%= f.input :name,label: "PeloMetrics Handle", required: false, autofocus: true %>
-				<%= f.input :email, required: true, autofocus: false %>
-				<%= f.input :age, label: "Age", value: @current_user&.age, required: true %>
-		</div>
+			<div class="form-group">
+				<label>PeloMetrics Handle</label>
+				<%= f.input :name,label: false, required: false, autofocus: true %>
+			</div>
+				<div class="form-group">
+					<label>*Email</label>
+					<%= f.input :email, required: true, label: false, autofocus: false %>
+			</div>
+			<div class="form-group">
+				<label>Date of Birth</label>
+				<%= f.date_field :age, label: "Age", label: true, value: @current_user&.age, required: true, class: "date-field form-control" %>
+			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="form-inputs">
-				<%= f.input :password, autocomplete: "off",label: "New Password" , placeholder: "leave blank if you don't want to change it", required: false %>
-				<%= f.input :current_password, label: "Current Password", hint: "we need your current password to confirm your changes", required: true %>
+			<div class="form-group">
+				<label>*New Password</label>
+				<%= f.input :password, autocomplete: "off",label: false , placeholder: "leave blank if you don't want to change it", required: false %>
 			</div>
+			<div class="form-group">
+				<label>*Current Password</label>
+				<%= f.input :current_password, label: false, hint: "we need your current password to confirm your changes", required: true %>
+			</div>
+
 		</div>
 	</div>
 	<div class="col-md-12">
