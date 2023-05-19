@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 	has_and_belongs_to_many :teams
 	accepts_nested_attributes_for :teams
 
+  enum gender: {male: 0, female: 1, nonbinary: 2}
   def remember_me
     true
   end

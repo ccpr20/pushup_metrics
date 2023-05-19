@@ -19,6 +19,7 @@
     <%= f.input :password, label: false, placeholder: "Password", required: true %>
     <%= f.date_field :age, label: false, placeholder: "Age(Optional)", required: false, class: "form-control date-field" %>
     <%= f.country_select :country, as: :select, label: true,  placeholder: "Please select your Country",:include_blank => false , required: true %>
+    <%= f.select :gender, User.genders.keys, required: true, class: "form-control date-field" %>
     <!-- phone number input not working  -->
     <!-- <%= f.simple_fields_for :reminders do |r| %>
       <%= r.input :phone_number, required: false, label: false, hint: "Daily SMS reminders to do your pushups.", placeholder: "Mobile Number (optional)" %>

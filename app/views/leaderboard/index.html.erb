@@ -10,6 +10,7 @@
         <th>Total Minutes</th>
         <th>Country</th>
         <th>Age</th>
+        <th>Gender</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
         <td><%= leader['total_pushup'] %></td>
         <td><%= leader['country'] %></td>
         <td><%= leader['age'] %></td>
+        <td><%= User.genders.key(leader['gender']) %></td>
   		</tr>
   	<% end %>
     </tbody>
