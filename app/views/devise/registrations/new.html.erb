@@ -18,10 +18,21 @@
     <%= f.input :email, label: false, placeholder: "Email",  required: true, autofocus: false %>
     <%= f.input :password, label: false, placeholder: "Password", required: true %>
     <%= f.date_field :age, label: false, placeholder: "Age(Optional)", required: false, class: "form-control date-field" %>
-    <%= f.country_select :country, as: :select, label: true,  placeholder: "Please select your Country",:include_blank => false , required: true %>
-    <%= f.select :gender, User.genders.keys, required: true, class: "form-control date-field" %>
-    <div><%= f.check_box :terms_and_conditions, required: true %>I agree with the terms and conditons.</div>
-    <div><%= f.check_box :hide_profile %>Hide my profile from the leaderboard.</div>
+    <div class="margin-bottom"><%= f.country_select :country, as: :select, label: true, class: "margin-bottom",  placeholder: "Please select your Country",:include_blank => false , required: true, class: "margin-bottom"%></div>
+    <div class="margin-bottom"><%= f.select :gender, User.genders.keys, required: true, class: "form-control date-field margin-bottom" %></div>
+    <div>
+      <%= f.check_box :terms_and_conditions, required: true %>I agree with the
+      <%= link_to 'terms and conditions.', '#',  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#tosModal', class: 'nav-link'} %>
+      <%= render 'shared/terms_and_conditions_modal' %>
+    </div>
+    <div>
+      <%= f.check_box :privacy_policy, required: true %>I agree with the
+      <%= link_to 'privacy policy.', '#',  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#privacy_policy_Modal', class: 'nav-link'} %>
+      <%= render 'shared/privacy_policy_modal' %>
+    </div>
+
+
+    <div class="margin-bottom" ><%= f.check_box :hide_profile %>Hide my profile from the leaderboard.</div>
     <!-- phone number input not working  -->
     <!-- <%= f.simple_fields_for :reminders do |r| %>
       <%= r.input :phone_number, required: false, label: false, hint: "Daily SMS reminders to do your pushups.", placeholder: "Mobile Number (optional)" %>
