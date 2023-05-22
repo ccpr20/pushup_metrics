@@ -18,6 +18,10 @@
 				<label>Date of Birth</label>
 				<%= f.date_field :age, label: "Age", label: true, value: @current_user&.age, required: true, class: "date-field form-control" %>
 			</div>
+				<div class="form-group">
+					<%= f.check_box :show_age, label: false, required: false %>
+				<span>I want to show my age on the leaderboard.</span>
+			</div>
 		</div>
 		<div class="col-md-4">
 			<div class="form-group">
@@ -28,7 +32,10 @@
 				<label>*Current Password</label>
 				<%= f.input :current_password, label: false, hint: "we need your current password to confirm your changes", required: true %>
 			</div>
-
+			<div class="form-group">
+				<%= f.check_box :show_gender, label: false, required: false %>
+				<span>I want to show my gender on the leaderboard.</span>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-12">

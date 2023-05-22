@@ -57,11 +57,11 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
 	def sign_up_params
-    params.require(:user).permit(:email, :name, :company, :country,:gender, :age, :company_website, :password, reminders_attributes: [:phone_number])
+    params.require(:user).permit(:email, :name, :company, :country,:gender, :terms_and_conditions, :age, :hide_profile, :company_website, :password, reminders_attributes: [:phone_number])
 	end
 
 	def account_update_params
-    params.require(:user).permit(:email, :name ,:age, :company, :country, :gender,:company_website, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:email, :name , :company, :terms_and_conditions, :country, :age, :show_age,:show_gender, :gender, :company_website, :password, :password_confirmation, :current_password)
 	end
 
   def update_resource(resource, params)

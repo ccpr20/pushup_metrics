@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   validates_presence_of :email
   validate  :over_18
+  validates :terms_and_conditions, :acceptance => true
 
 	has_many :pushups, :dependent => :destroy
 	has_many :reminders, :dependent => :destroy

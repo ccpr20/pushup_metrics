@@ -5,7 +5,7 @@ class LeaderboardController < ApplicationController
     sql = "
       SELECT
           a.*,
-          b.total_pushup 
+          b.total_pushup
       FROM
           users a
       INNER JOIN (
@@ -18,6 +18,7 @@ class LeaderboardController < ApplicationController
               EXTRACT(DAY FROM now()-created_at) <= 90
           GROUP BY user_id
       ) b ON a.id = b.user_id
+      AND a.hide_profile = false
       ORDER BY total_pushup DESC
     "
     @leaders = ActiveRecord::Base.connection.execute(sql)
