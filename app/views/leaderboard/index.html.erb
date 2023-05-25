@@ -1,14 +1,15 @@
 <div class="col-md-12">
 	<div class="col-md-6">
     <div class="d-flex">
-        <div class="dropdown w-auto col-md-4">
+    	<h1>Leaderboard</h1><p>(Trailing 90 days)</p><br>
+        <%# <div class="dropdown w-auto col-md-4">
           <select name="trailing" id="selected-Trailing">
             <option value="90">Trailing 90 Days</option>
             <option value="28">Trailing 28 Days</option>
             <option value="7">Trailing 7 Days</option>
           </select>
         </div>
-        <button class="btn-primary" onclick="myFunction()" class="dropbtn">Dropdown</button>
+        <button class="btn-primary" onclick="myFunction()" class="dropbtn">Dropdown</button> %>
     </div>
 
   <br>
@@ -32,8 +33,16 @@
   			<td><%= public_avatar(leader) %> <%= leader['name'] %></td>
         <td><%= leader['total_pushup'] %></td>
         <td><%= leader['country'] %></td>
-        <td><%= calculate_age(leader['age']&.to_date) %></td>
-        <td><%= User.genders.key(leader['gender']) %></td>
+        <%- if leader['show_age']== true %>
+          <td><%= calculate_age(leader['age']&.to_date) %></td>
+        <%- else %>
+          <td> </td>
+        <%- end%>
+        <%- if leader['show_gender'] == true %>
+          <td><%= User.genders.key(leader['gender']) %></td>
+        <%- else %>
+          <td> </td>
+        <%- end%>
   		</tr>
   	<% end %>
     </tbody>
