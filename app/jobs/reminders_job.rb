@@ -9,7 +9,7 @@ class RemindersJob
         client.messages.create(
           from: ENV['TWILIO_PHONE_NUMBER'],
           to: user,
-          body: 'Drop down and give me some pushups, maggot! (Reply to this message with an amount for instant logging.)')
+          body: 'Drop down and give me some pushups (Reply to this message with an amount for instant logging.)')
         puts "texted: #{user}"
       end
     end

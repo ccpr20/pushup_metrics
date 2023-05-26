@@ -131,7 +131,7 @@ class Reminder < ActiveRecord::Base
 
 	def self.create_reminder_message
 		message = [
-			"Drop down and give me some minutes, maggot!",
+			"Drop down and give me some minutes",
 			"Pain is temporary, pride is forever.",
 			"Sweat is your fat crying.",
 			"Everything is hard before it is easy.",
