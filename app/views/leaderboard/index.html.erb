@@ -1,15 +1,15 @@
 <div class="col-md-12">
 	<div class="col-md-6">
     <div class="d-flex">
-    	<h1>Leaderboard</h1><p>(Trailing 90 days)</p><br>
-        <%# <div class="dropdown w-auto col-md-4">
+    	<h1>Leaderboard</h1><p>(Trailing <%=@trailing_val%> days)</p><br>
+        <div class="dropdown w-auto col-md-4">
           <select name="trailing" id="selected-Trailing">
             <option value="90">Trailing 90 Days</option>
             <option value="28">Trailing 28 Days</option>
             <option value="7">Trailing 7 Days</option>
           </select>
         </div>
-        <button class="btn-primary" onclick="myFunction()" class="dropbtn">Dropdown</button> %>
+        <button class="btn-primary dropbtn" id="change-leaderboard">Dropdown</button>
     </div>
 
   <br>
@@ -26,7 +26,7 @@
       </tr>
     </thead>
     <tbody>
-  	<% @leaders.each_with_index do |leader, idx| %>
+  	<% @leaders&.each_with_index do |leader, idx| %>
 
   		<tr>
         <td><%= idx + 1 %></td>
