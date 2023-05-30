@@ -8,11 +8,11 @@ $(document).on('turbolinks:load', function() {
     let trailingValue = $("#selected-Trailing").val();
     const url = new URL(window.location.href);
     url.searchParams.set('trailing_value', trailingValue);
-    console.log(url.search)
+    // console.log(url.search)
     // search_params.set('trailing_value', trailingValue);
     // url.search = search_params.toString()
     var new_url = url.toString();
-    console.log(new_url);
+    // console.log(new_url);
     window.location=url;
 
     //  changeLeaderboard();
