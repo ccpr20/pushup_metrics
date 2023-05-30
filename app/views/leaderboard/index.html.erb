@@ -47,6 +47,8 @@
   	<% end %>
     </tbody>
   </table>
-
+  <%- if @trailing_val.present? %>
+    <input class="hidden d-none" id="hidden-trailing" value='<%= @trailing_val %>' >
+  <% end %>
 	</div>
 </div>

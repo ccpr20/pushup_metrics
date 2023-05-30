@@ -3,7 +3,8 @@ $(document).on('turbolinks:load', function() {
   if(myEle) {
     $('.footer').removeClass('bottom');
   }
-  $('#dropdownid').val('selectedvalue')
+  debugger
+  $('#selected-Trailing').val($('#hidden-trailing').val()).change();
   $("#change-leaderboard").on("click", function(){
     let trailingValue = $("#selected-Trailing").val();
     const url = new URL(window.location.href);
