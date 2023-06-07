@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates_presence_of :email
-  validate  :over_18
+  validate  :over_18, on: :create
   validates :terms_and_conditions, :acceptance => true
 
 	has_many :pushups, :dependent => :destroy
