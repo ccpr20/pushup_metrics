@@ -3,7 +3,7 @@ $(document).on('turbolinks:load', function() {
   if(myEle) {
     $('.footer').removeClass('bottom');
   }
-  debugger
+
   $('#selected-Trailing').val($('#hidden-trailing').val()).change();
   $("#change-leaderboard").on("click", function(){
     let trailingValue = $("#selected-Trailing").val();

@@ -36,6 +36,9 @@
 				<%= f.check_box :show_gender, label: false, required: false %>
 				<span>I want to show my gender on the leaderboard.</span>
 			</div>
+			<div class="form-group">
+				<%= f.select :gender, User.genders.keys, required: true, class: "form-control w-100 h-100 date-field margin-bottom form-control" %>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-12">

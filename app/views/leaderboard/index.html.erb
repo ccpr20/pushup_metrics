@@ -9,7 +9,7 @@
             <option value="7">Trailing 7 Days</option>
           </select>
         </div>
-        <button class="btn-primary dropbtn" id="change-leaderboard">Dropdown</button>
+        <button class="btn-primary dropbtn" id="change-leaderboard">Update</button>
     </div>
 
   <br>
@@ -30,7 +30,7 @@
 
   		<tr>
         <td><%= idx + 1 %></td>
-  			<td><%= public_avatar(leader) %> <%= leader['name'] %></td>
+  			<td><%= leader['name'] %></td>
         <td><%= leader['total_pushup'] %></td>
         <td><%= leader['country'] %></td>
         <%- if leader['show_age']== true %>
